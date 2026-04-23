@@ -1,10 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://pl00000001"]
+[gd_scene load_steps=9 format=3 uid="uid://pl00000001"]
 
 [ext_resource type="Script" path="res://scripts/player/Player.gd" id="1_pl001"]
+[ext_resource type="Script" path="res://scripts/weapons/WeaponManager.gd" id="2_pl001"]
+[ext_resource type="Script" path="res://scripts/weapons/Revolver.gd" id="3_pl001"]
+[ext_resource type="Script" path="res://scripts/weapons/Derringer.gd" id="4_pl001"]
+[ext_resource type="Script" path="res://scripts/weapons/Cane.gd" id="5_pl001"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pl001"]
 radius = 0.4
 height = 1.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_revolver"]
+size = Vector3(0.08, 0.14, 0.28)
+
+[sub_resource type="BoxMesh" id="BoxMesh_derringer"]
+size = Vector3(0.06, 0.10, 0.18)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_cane"]
+top_radius = 0.02
+bottom_radius = 0.02
+height = 0.7
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_pl001")
@@ -22,3 +37,27 @@ fov = 75.0
 [node name="InteractRay" type="RayCast3D" parent="Head/Camera3D"]
 target_position = Vector3(0, 0, -2)
 enabled = true
+
+[node name="WeaponManager" type="Node" parent="Head/Camera3D"]
+script = ExtResource("2_pl001")
+
+[node name="Revolver" type="Node3D" parent="Head/Camera3D/WeaponManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.3, -0.5)
+script = ExtResource("3_pl001")
+
+[node name="Mesh" type="MeshInstance3D" parent="Head/Camera3D/WeaponManager/Revolver"]
+mesh = SubResource("BoxMesh_revolver")
+
+[node name="Derringer" type="Node3D" parent="Head/Camera3D/WeaponManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22, -0.28, -0.42)
+script = ExtResource("4_pl001")
+
+[node name="Mesh" type="MeshInstance3D" parent="Head/Camera3D/WeaponManager/Derringer"]
+mesh = SubResource("BoxMesh_derringer")
+
+[node name="Cane" type="Node3D" parent="Head/Camera3D/WeaponManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.35, -0.6)
+script = ExtResource("5_pl001")
+
+[node name="Mesh" type="MeshInstance3D" parent="Head/Camera3D/WeaponManager/Cane"]
+mesh = SubResource("CylinderMesh_cane")

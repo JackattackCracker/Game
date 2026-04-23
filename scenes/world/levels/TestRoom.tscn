@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://tr00000001"]
+[gd_scene load_steps=31 format=3 uid="uid://tr00000001"]
 
 [ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="1_tr001"]
 [ext_resource type="PackedScene" path="res://scenes/npcs/NPC.tscn" id="2_tr001"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" path="res://scenes/world/CabStop.tscn" id="14_tr001"]
 [ext_resource type="PackedScene" path="res://scenes/ui/CabUI.tscn" id="15_tr001"]
 [ext_resource type="PackedScene" path="res://scenes/world/LevelDoor.tscn" id="16_tr001"]
+[ext_resource type="PackedScene" path="res://scenes/npcs/Enemy.tscn" id="17_tr001"]
 
 [sub_resource type="Environment" id="Environment_tr001"]
 background_mode = 1
@@ -196,6 +197,12 @@ target_scene = "res://scenes/world/levels/LodgingsHub.tscn"
 target_spawn = "default"
 door_label = "Return to lodgings"
 travel_hours = 0
+
+[node name="GuardEnemy" parent="." instance=ExtResource("17_tr001")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+patrol_points = [Vector3(3, 0, -3), Vector3(-1, 0, -3), Vector3(-1, 0, 0), Vector3(3, 0, 0)]
+sight_range = 10.0
+hear_range = 6.0
 
 [node name="HUD" parent="." instance=ExtResource("3_tr001")]
 [node name="Inventory" parent="." instance=ExtResource("4_tr001")]

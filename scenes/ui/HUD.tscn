@@ -5,6 +5,14 @@
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_hd001")
 
+[node name="DamageFlash" type="ColorRect" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(1, 0, 0, 0)
+mouse_filter = 2
+
 [node name="Crosshair" type="Label" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -65,3 +73,27 @@ anchor_right = 0.15
 anchor_bottom = 0.06
 offset_left = 8.0
 text = "£20"
+
+[node name="HealthLabel" type="Label" parent="."]
+anchor_left = 0.0
+anchor_top = 0.06
+anchor_right = 0.2
+anchor_bottom = 0.12
+offset_left = 8.0
+text = "100 / 100"
+
+[node name="WeaponLabel" type="Label" parent="."]
+anchor_left = 0.0
+anchor_top = 0.88
+anchor_right = 0.25
+anchor_bottom = 0.94
+offset_left = 8.0
+text = ""
+
+[node name="AmmoLabel" type="Label" parent="."]
+anchor_left = 0.0
+anchor_top = 0.94
+anchor_right = 0.25
+anchor_bottom = 1.0
+offset_left = 8.0
+text = ""
