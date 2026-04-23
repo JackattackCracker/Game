@@ -1,0 +1,30 @@
+[
+	{
+		"id": "pocket_watch",
+		"name": "Gold Pocket Watch",
+		"description": "A tarnished gold pocket watch. The engraving on the back reads: 'To E.H. — Time reveals all.' The hands are stopped at 11:47.",
+		"sprite": "",
+		"is_clue": true
+	},
+	{
+		"id": "torn_note",
+		"name": "Torn Note",
+		"description": "Half a page torn from a letter. The visible text reads: '...meet me Thursday at the old mill. Come alone. Tell no one, especially not H...' The rest is missing.",
+		"sprite": "",
+		"is_clue": true
+	},
+	{
+		"id": "door_key",
+		"name": "Iron Key",
+		"description": "A heavy iron key with a worn bow. A small tag reads '3' in faded ink.",
+		"sprite": "",
+		"is_clue": false
+	},
+	{
+		"id": "calling_card",
+		"name": "Calling Card",
+		"description": "A cream-coloured card. 'Mr. R. Harlow — Solicitor. 14 Marsh Street.' The corner is slightly singed.",
+		"sprite": "",
+		"is_clue": true
+	}
+]

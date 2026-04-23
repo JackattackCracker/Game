@@ -1,0 +1,138 @@
+{
+	"entry_friendly": "start_friendly",
+	"entry_hostile": "hostile_start",
+	"nodes": {
+		"start": {
+			"text": "Oh — a detective, are you? I wondered when someone official might show up. There's been... odd goings-on around here.",
+			"choices": [
+				{ "text": "What kind of odd goings-on?", "next": "odd_goings" },
+				{ "text": "When did you last see the master of the house?", "next": "ask_owner" },
+				{ "text": "I'll come back later.", "next": "end" }
+			]
+		},
+		"start_friendly": {
+			"text": "Detective — good, you've come back. I've been thinking about what you asked. There's something else I ought to tell you.",
+			"choices": [
+				{ "text": "Go on.", "next": "odd_goings" },
+				{ "text": "Thank you. I'll keep it in mind.", "next": "end" }
+			]
+		},
+		"hostile_start": {
+			"text": "I've said all I intend to say. Come back when you've earned a measure of trust around here.",
+			"choices": [
+				{ "text": "I understand. Good day.", "next": "end" }
+			]
+		},
+		"odd_goings": {
+			"text": "Two nights past I heard something — a dragging sound, like. From the east wing. I told myself it was rats. Very large rats.",
+			"set_flags": { "heard_east_wing_clue": true },
+			"choices": [
+				{ "text": "What time was this?", "next": "time_question" },
+				{ "text": "Did you see anyone?", "next": "saw_anyone" },
+				{ "text": "Thank you. I'll look into it.", "next": "end" }
+			]
+		},
+		"time_question": {
+			"text": "Past midnight, certainly. The gas lamps had been turned low — I had to feel my way down the corridor.",
+			"choices": [
+				{ "text": "Did you see anyone?", "next": "saw_anyone" },
+				{ "text": "Thank you.", "next": "end" }
+			]
+		},
+		"saw_anyone": {
+			"text": "A shape, only. Tall, in a long coat. Could have been anyone. Could have been the master himself, for all I know.",
+			"set_flags": { "knows_tall_figure": true },
+			"choices": [
+				{ "text": "The master — has he been acting strangely lately?", "next": "ask_master_behaviour" },
+				{ "text": "Thank you for your time.", "next": "end" }
+			]
+		},
+		"ask_master_behaviour": {
+			"text": "I've perhaps said too much already. Earn a bit more trust first, Detective.",
+			"reputation_change": -1,
+			"choices": [
+				{ "text": "Fair enough. Good day.", "next": "end" }
+			]
+		},
+		"ask_owner": {
+			"text": "Three days ago. He left in a great hurry — no luggage, no word to the staff. That's what worries me most.",
+			"set_flags": { "owner_missing_3_days": true },
+			"choices": [
+				{ "text": "He left no note?", "next": "no_note" },
+				{ "text": "Was anyone else present when he left?", "next": "others_present" },
+				{ "text": "Thank you.", "next": "end" }
+			]
+		},
+		"no_note": {
+			"text": "Nothing — I checked his desk myself. Though... the drawer had been forced. Someone had been through his papers before I reached them.",
+			"set_flags": { "desk_was_searched": true },
+			"choices": [
+				{ "text": "Did you report this to the constables?", "next": "constables" },
+				{ "text": "Who else has access to the study?", "next": "study_access" }
+			]
+		},
+		"constables": {
+			"text": "Constable Webb came round. Took one look and declared it 'probably nothing.' He could barely wait to be gone.",
+			"set_flags": { "constable_webb_involved": true },
+			"choices": [
+				{ "text": "Odd behaviour for an officer.", "next": "odd_officer" },
+				{ "text": "Thank you. This has been very helpful.", "next": "grateful_end" }
+			]
+		},
+		"odd_officer": {
+			"text": "That's precisely what I thought. Something's rotten here, Detective. I hope you find it before it finds us.",
+			"reputation_change": 1,
+			"set_flags": { "spoke_to_npc_fully": true },
+			"choices": [
+				{ "text": "I intend to. Good day.", "next": "end" }
+			]
+		},
+		"grateful_end": {
+			"text": "Of course. The door at the back — I've left it unlocked for you. See what you make of the east wing.",
+			"set_flags": { "spoke_to_npc_fully": true },
+			"reputation_change": 1,
+			"choices": [
+				{ "text": "Thank you. I'll have a look.", "next": "end" }
+			]
+		},
+		"study_access": {
+			"text": "The master, myself, and Mr. Harlow — his solicitor. Harlow visited the very day before the disappearance.",
+			"set_flags": { "harlow_visited": true },
+			"choices": [
+				{ "text": "Tell me more about Harlow.", "next": "about_harlow" },
+				{ "text": "Thank you.", "next": "end" }
+			]
+		},
+		"about_harlow": {
+			"text": "A cold sort. Always watching. The master relied on him completely, which I never understood. His card is around here somewhere — I can't think where I put it.",
+			"choices": [
+				{ "text": "Where might I find him?", "next": "harlow_location" },
+				{ "text": "Thank you.", "next": "end" }
+			]
+		},
+		"harlow_location": {
+			"text": "He keeps an office near the station. Above the tobacconist's on Marsh Street, I believe. Number fourteen.",
+			"set_flags": { "knows_harlow_location": true, "spoke_to_npc_fully": true },
+			"reputation_change": 1,
+			"choices": [
+				{ "text": "Much obliged. Good day.", "next": "end" }
+			]
+		},
+		"others_present": {
+			"text": "Mr. Harlow was here that morning. They argued — I heard raised voices through the study door. Then the master was simply... gone.",
+			"set_flags": { "harlow_visited": true, "harlow_argued": true },
+			"choices": [
+				{ "text": "What did they argue about?", "next": "argument_content" },
+				{ "text": "Thank you.", "next": "end" }
+			]
+		},
+		"argument_content": {
+			"text": "I couldn't make out the words. Only the tone. The master sounded frightened. I've not heard him sound frightened before.",
+			"set_flags": { "master_was_frightened": true, "spoke_to_npc_fully": true },
+			"reputation_change": 1,
+			"choices": [
+				{ "text": "Frightened. That's significant. Thank you.", "next": "end" }
+			]
+		}
+	}
+}

@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://jn00000001"]
+
+[ext_resource type="Script" path="res://scripts/ui/Journal.gd" id="1_jn001"]
+
+[node name="Journal" type="CanvasLayer"]
+script = ExtResource("1_jn001")
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Title" type="Label" parent="Panel"]
+anchor_right = 1.0
+offset_top = 10.0
+offset_bottom = 40.0
+text = "— JOURNAL —"
+horizontal_alignment = 1
+
+[node name="EntriesLabel" type="RichTextLabel" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 50.0
+offset_left = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+text = ""
