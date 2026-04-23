@@ -1,4 +1,6 @@
 {
+	"max_pressure": 3,
+	"pressure_broken_node": "shut_down",
 	"entry_friendly": "start_friendly",
 	"entry_hostile": "hostile_start",
 	"nodes": {
@@ -7,8 +9,21 @@
 			"choices": [
 				{ "text": "What kind of odd goings-on?", "next": "odd_goings" },
 				{ "text": "When did you last see the master of the house?", "next": "ask_owner" },
+				{ "text": "Stop wasting my time. Tell me everything, now.", "next": "pressured", "uses_pressure": true },
 				{ "text": "I'll come back later.", "next": "end" }
 			]
+		},
+		"pressured": {
+			"text": "I beg your pardon! I am trying to help, Detective. Push like that again and you'll hear nothing more from me.",
+			"reputation_change": -1,
+			"choices": [
+				{ "text": "My apologies. Let's start again.", "next": "start" },
+				{ "text": "Then start talking. Quickly.", "next": "start", "uses_pressure": true }
+			]
+		},
+		"shut_down": {
+			"text": "That's quite enough. I have nothing more to say to you. Good day.",
+			"choices": []
 		},
 		"start_friendly": {
 			"text": "Detective — good, you've come back. I've been thinking about what you asked. There's something else I ought to tell you.",
@@ -43,7 +58,7 @@
 			"text": "A shape, only. Tall, in a long coat. Could have been anyone. Could have been the master himself, for all I know.",
 			"set_flags": { "knows_tall_figure": true },
 			"choices": [
-				{ "text": "The master — has he been acting strangely lately?", "next": "ask_master_behaviour" },
+				{ "text": "The master — has he been acting strangely?", "next": "ask_master_behaviour" },
 				{ "text": "Thank you for your time.", "next": "end" }
 			]
 		},
@@ -51,7 +66,8 @@
 			"text": "I've perhaps said too much already. Earn a bit more trust first, Detective.",
 			"reputation_change": -1,
 			"choices": [
-				{ "text": "Fair enough. Good day.", "next": "end" }
+				{ "text": "Fair enough. Good day.", "next": "end" },
+				{ "text": "I insist. What do you know?", "next": "shut_down", "uses_pressure": true }
 			]
 		},
 		"ask_owner": {
@@ -104,14 +120,14 @@
 			]
 		},
 		"about_harlow": {
-			"text": "A cold sort. Always watching. The master relied on him completely, which I never understood. His card is around here somewhere — I can't think where I put it.",
+			"text": "A cold sort. Always watching. The master relied on him completely, which I never understood.",
 			"choices": [
 				{ "text": "Where might I find him?", "next": "harlow_location" },
 				{ "text": "Thank you.", "next": "end" }
 			]
 		},
 		"harlow_location": {
-			"text": "He keeps an office near the station. Above the tobacconist's on Marsh Street, I believe. Number fourteen.",
+			"text": "He keeps an office near the station. Above the tobacconist's on Marsh Street. Number fourteen.",
 			"set_flags": { "knows_harlow_location": true, "spoke_to_npc_fully": true },
 			"reputation_change": 1,
 			"choices": [

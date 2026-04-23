@@ -37,3 +37,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 visible = false
+
+[node name="SubtitleLabel" type="Label" parent="."]
+anchor_left = 0.1
+anchor_top = 0.06
+anchor_right = 0.9
+anchor_bottom = 0.16
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+visible = false

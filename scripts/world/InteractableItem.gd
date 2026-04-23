@@ -4,6 +4,7 @@ extends StaticBody3D
 @export var item_label:   String = "Pick up"
 @export var examine_text: String = ""
 @export var is_pickup:    bool   = true
+@export var is_examinable: bool  = false   # opens 3D examine mode
 
 
 func _ready() -> void:
@@ -12,6 +13,13 @@ func _ready() -> void:
 
 
 func interact() -> void:
+	if is_examinable:
+		var examine_ui := get_tree().get_first_node_in_group("examine_ui")
+		if examine_ui:
+			var mesh_inst := find_child("MeshInstance3D", true, false) as MeshInstance3D
+			examine_ui.open_examine(self, item_id, mesh_inst.mesh if mesh_inst else null, is_pickup)
+			return
+
 	var hud := get_tree().get_first_node_in_group("hud")
 
 	if is_pickup and item_id != "":

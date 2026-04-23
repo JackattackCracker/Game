@@ -1,0 +1,32 @@
+{
+	"deductions": [
+		{
+			"id": "fled_in_haste",
+			"requires_clues": ["pocket_watch", "torn_note"],
+			"description": "Both items were abandoned in the study — whoever left did so without time to collect anything. This was not a planned departure.",
+			"set_flag": "deduced_fled_in_haste",
+			"board_label": "Fled without warning"
+		},
+		{
+			"id": "harlow_authored_note",
+			"requires_clues": ["found_note_watermark", "found_card_thursday"],
+			"description": "The torn note was written on Harlow's own paper, and both reference Thursday. Harlow wrote the note — or dictated it.",
+			"set_flag": "deduced_harlow_authored_note",
+			"board_label": "Harlow wrote the note"
+		},
+		{
+			"id": "room_was_searched",
+			"requires_clues": ["obs_drawer_forced", "torn_note"],
+			"description": "The drawer was forced and a document destroyed — someone searched this room looking for exactly what the note references.",
+			"set_flag": "deduced_room_was_searched",
+			"board_label": "Study deliberately searched"
+		},
+		{
+			"id": "eavesdrop_connects_to_note",
+			"requires_clues": ["conspirators_exchange", "torn_note"],
+			"description": "The overheard voices confirmed papers were taken from this room. The torn note is what they were looking for — or what they left behind.",
+			"set_flag": "deduced_note_was_target",
+			"board_label": "Note was the target"
+		}
+	]
+}

@@ -2,13 +2,14 @@ extends CanvasLayer
 
 signal dialogue_ended(npc_id: String)
 
-@onready var panel:    Panel          = $Panel
-@onready var speaker:  Label          = $Panel/VBox/Speaker
-@onready var body:     RichTextLabel  = $Panel/VBox/Body
-@onready var choices:  VBoxContainer  = $Panel/VBox/Choices
+@onready var panel:   Panel         = $Panel
+@onready var speaker: Label         = $Panel/VBox/Speaker
+@onready var body:    RichTextLabel = $Panel/VBox/Body
+@onready var choices: VBoxContainer = $Panel/VBox/Choices
 
-var _tree:    Dictionary = {}
-var _npc_id:  String     = ""
+var _tree:              Dictionary = {}
+var _npc_id:            String     = ""
+var _pressure_remaining: int       = -1   # -1 = unlimited
 
 
 func _ready() -> void:
@@ -32,7 +33,12 @@ func start_dialogue(dialogue_file: String, npc_id: String, npc_name: String) -> 
 	_npc_id = npc_id
 	speaker.text = npc_name
 
-	# Pick entry node based on reputation
+	# Pressure — only initialise on first conversation
+	var max_p: int = _tree.get("max_pressure", -1)
+	if max_p > 0:
+		GameManager.init_pressure(npc_id, max_p)
+	_pressure_remaining = GameManager.get_pressure(npc_id)
+
 	var rep := GameManager.get_reputation(npc_id)
 	var entry := "start"
 	if rep <= -3:
@@ -53,7 +59,6 @@ func _show_node(node_id: String) -> void:
 		_end()
 		return
 
-	# Apply side-effects
 	for key in node.get("set_flags", {}).keys():
 		GameManager.set_flag(key, node["set_flags"][key])
 	for item_id in node.get("give_items", []):
@@ -90,11 +95,22 @@ func _build_choices(raw: Array) -> void:
 	for choice in visible_choices:
 		var btn := Button.new()
 		btn.text = choice.get("text", "...")
+		# Grey out pressure choices when exhausted
+		if choice.get("uses_pressure", false) and _pressure_remaining == 0:
+			btn.text += "  [no leverage left]"
+			btn.disabled = true
 		btn.pressed.connect(_on_choice.bind(choice))
 		choices.add_child(btn)
 
 
 func _on_choice(choice: Dictionary) -> void:
+	if choice.get("uses_pressure", false):
+		_pressure_remaining = GameManager.use_pressure(_npc_id)
+		if _pressure_remaining == 0:
+			var broken_node: String = _tree.get("pressure_broken_node", "end")
+			_show_node(broken_node)
+			return
+
 	var next: String = choice.get("next", "end")
 	if next == "" or next == "end":
 		_end()

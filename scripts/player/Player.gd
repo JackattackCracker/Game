@@ -8,13 +8,13 @@ const BOB_AMP       := 0.04
 const HEAD_BASE_Y   := 1.5
 const HEAD_CROUCH_Y := 0.9
 
-@onready var head: Node3D      = $Head
-@onready var camera: Camera3D  = $Head/Camera3D
+@onready var head: Node3D           = $Head
+@onready var camera: Camera3D       = $Head/Camera3D
 @onready var interact_ray: RayCast3D = $Head/Camera3D/InteractRay
 
 var _gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var _bob_t: float = 0.0
-var _crouching := false
+var is_crouching := false   # public — read by EavesdropZone
 var _prev_interactable: Node = null
 
 
@@ -53,8 +53,8 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y -= _gravity * delta
 
-	_crouching = Input.is_action_pressed("crouch")
-	var speed := CROUCH_SPEED if _crouching else WALK_SPEED
+	is_crouching = Input.is_action_pressed("crouch")
+	var speed := CROUCH_SPEED if is_crouching else WALK_SPEED
 
 	var input := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var dir := (transform.basis * Vector3(input.x, 0.0, input.y)).normalized()
@@ -72,9 +72,9 @@ func _physics_process(delta: float) -> void:
 
 
 func _update_head_bob(delta: float, moving: bool) -> void:
-	var target_y := HEAD_CROUCH_Y if _crouching else HEAD_BASE_Y
+	var target_y := HEAD_CROUCH_Y if is_crouching else HEAD_BASE_Y
 	if moving and is_on_floor():
-		_bob_t += delta * BOB_FREQ * (CROUCH_SPEED if _crouching else WALK_SPEED)
+		_bob_t += delta * BOB_FREQ * (CROUCH_SPEED if is_crouching else WALK_SPEED)
 		target_y += sin(_bob_t) * BOB_AMP
 	else:
 		_bob_t = 0.0
@@ -89,8 +89,7 @@ func _update_interact_prompt() -> void:
 	if interact_ray.is_colliding():
 		var col := interact_ray.get_collider()
 		if col and col.is_in_group("interactable"):
-			if col != _prev_interactable:
-				_prev_interactable = col
+			_prev_interactable = col
 			hud.show_interact_prompt(col.get_meta("interact_label", "Examine"))
 			return
 

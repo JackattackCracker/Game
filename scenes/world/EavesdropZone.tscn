@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ez00000001"]
+
+[ext_resource type="Script" path="res://scripts/world/EavesdropZone.gd" id="1_ez001"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hear"]
+radius = 4.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_spotted"]
+radius = 1.8
+
+[node name="EavesdropZone" type="Node3D"]
+script = ExtResource("1_ez001")
+conversation_file = ""
+hear_radius = 4.0
+spotted_radius = 1.8
+
+[node name="HearArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HearArea"]
+shape = SubResource("SphereShape3D_hear")
+
+[node name="SpottedArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpottedArea"]
+shape = SubResource("SphereShape3D_spotted")

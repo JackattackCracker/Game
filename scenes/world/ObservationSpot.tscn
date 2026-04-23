@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://os00000001"]
+
+[ext_resource type="Script" path="res://scripts/world/ObservationSpot.gd" id="1_os001"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_os001"]
+size = Vector3(1.4, 0.6, 1.0)
+
+[node name="ObservationSpot" type="StaticBody3D"]
+script = ExtResource("1_os001")
+observation_file = ""
+spot_flag = ""
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_os001")

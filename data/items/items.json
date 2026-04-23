@@ -2,29 +2,67 @@
 	{
 		"id": "pocket_watch",
 		"name": "Gold Pocket Watch",
-		"description": "A tarnished gold pocket watch. The engraving on the back reads: 'To E.H. — Time reveals all.' The hands are stopped at 11:47.",
+		"description": "A tarnished gold pocket watch, still warm to the touch. The crystal is cracked.",
 		"sprite": "",
-		"is_clue": true
+		"is_clue": true,
+		"is_examinable": true,
+		"examination_discoveries": [
+			{
+				"axis": "y",
+				"angle_min": 145,
+				"angle_max": 215,
+				"text": "Turning it over, you find an engraving on the back: 'To E.H. — Time reveals all.' The hands are stopped at 11:47.",
+				"flag": "found_watch_inscription",
+				"board_label": "Watch engraved 'To E.H.'",
+				"journal_entry": "The back of the pocket watch reads: 'To E.H. — Time reveals all.' Someone's initials. The hands are frozen at 11:47 — the moment something happened."
+			}
+		]
 	},
 	{
 		"id": "torn_note",
 		"name": "Torn Note",
-		"description": "Half a page torn from a letter. The visible text reads: '...meet me Thursday at the old mill. Come alone. Tell no one, especially not H...' The rest is missing.",
+		"description": "Half a page torn from a letter. Something was written here in haste.",
 		"sprite": "",
-		"is_clue": true
+		"is_clue": true,
+		"is_examinable": true,
+		"examination_discoveries": [
+			{
+				"axis": "x",
+				"angle_min": 155,
+				"angle_max": 205,
+				"text": "Holding it to the light — a faint watermark. The paper is headed stock from Harlow & Associates, Solicitors.",
+				"flag": "found_note_watermark",
+				"board_label": "Note: Harlow letterhead",
+				"journal_entry": "The torn note uses headed paper from Harlow & Associates. This was written on Harlow's own stationery."
+			}
+		]
 	},
 	{
 		"id": "door_key",
 		"name": "Iron Key",
 		"description": "A heavy iron key with a worn bow. A small tag reads '3' in faded ink.",
 		"sprite": "",
-		"is_clue": false
+		"is_clue": false,
+		"is_examinable": false,
+		"examination_discoveries": []
 	},
 	{
 		"id": "calling_card",
 		"name": "Calling Card",
 		"description": "A cream-coloured card. 'Mr. R. Harlow — Solicitor. 14 Marsh Street.' The corner is slightly singed.",
 		"sprite": "",
-		"is_clue": true
+		"is_clue": true,
+		"is_examinable": true,
+		"examination_discoveries": [
+			{
+				"axis": "y",
+				"angle_min": 140,
+				"angle_max": 220,
+				"text": "On the back, in pencil, a single word: 'Thursday.' Underlined twice.",
+				"flag": "found_card_thursday",
+				"board_label": "Card: 'Thursday' pencilled",
+				"journal_entry": "The back of Harlow's calling card has 'Thursday' written in pencil and underlined. The torn note mentions a Thursday meeting."
+			}
+		]
 	}
 ]

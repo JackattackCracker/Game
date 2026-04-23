@@ -1,0 +1,41 @@
+{
+	"id": "conspirators_exchange",
+	"spotted_message": "A floorboard shifts under your weight. The voices cut off instantly.",
+	"complete_flag": "conspirators_exchange",
+	"lines": [
+		{
+			"speaker": "Low Voice",
+			"text": "The papers are gone. Someone's been through the study.",
+			"duration": 4.2,
+			"flag": "overheard_papers_gone"
+		},
+		{
+			"speaker": "Second Voice",
+			"text": "Then we move tonight. The detective must not find what no longer exists.",
+			"duration": 4.8,
+			"flag": "overheard_move_tonight"
+		},
+		{
+			"speaker": "Low Voice",
+			"text": "And the girl?",
+			"duration": 2.6
+		},
+		{
+			"speaker": "Second Voice",
+			"text": "She knows nothing. Keep it that way. If she starts asking questions—",
+			"duration": 4.0,
+			"flag": "overheard_girl_threat"
+		},
+		{
+			"speaker": "Low Voice",
+			"text": "Understood. Thursday still stands?",
+			"duration": 3.0,
+			"flag": "overheard_thursday_confirmed"
+		},
+		{
+			"speaker": "Second Voice",
+			"text": "Thursday still stands.",
+			"duration": 2.8
+		}
+	]
+}

@@ -1,0 +1,26 @@
+{
+	"id": "desk_observation",
+	"scene_description": "You look more carefully at the writing desk. Several things catch your eye.",
+	"spot_flag": "observed_desk",
+	"max_selections": 2,
+	"observations": [
+		{
+			"text": "The main drawer has been forced open — the wood around the lock is splintered clean. Someone used a letter opener or thin blade.",
+			"flag": "obs_drawer_forced",
+			"board_label": "Desk drawer forced",
+			"journal_text": "The desk drawer was forced with a blade. Whatever was kept there, someone needed it urgently."
+		},
+		{
+			"text": "A half-burned document curls in the ash tray. Only fragments survive: '...transfer of...' and what looks like a sum of money.",
+			"flag": "obs_burned_document",
+			"board_label": "Burned document (sum of money)",
+			"journal_text": "Someone burned a document before leaving — it referenced a financial transfer. The rest is ash."
+		},
+		{
+			"text": "The ink on the blotter is still wet, pressed into it backwards. With effort you can read a partial mirror image: '...do not trust H...'",
+			"flag": "obs_fresh_ink",
+			"board_label": "Blotter: 'do not trust H'",
+			"journal_text": "The blotter carries a fresh ink impression: '...do not trust H...' Written within the last few hours. H — Harlow?"
+		}
+	]
+}
