@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs00000001"]
+
+[ext_resource type="Script" path="res://scripts/world/CabStop.gd" id="1_cs001"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cs001"]
+size = Vector3(0.6, 1.6, 0.6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cs001"]
+size = Vector3(0.4, 1.4, 0.4)
+
+[node name="CabStop" type="StaticBody3D"]
+script = ExtResource("1_cs001")
+destinations_file = ""
+cab_label = "Hail a cab"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("BoxShape3D_cs001")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+mesh = SubResource("BoxMesh_cs001")

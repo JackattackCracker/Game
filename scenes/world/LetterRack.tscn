@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://lr00000001"]
+
+[ext_resource type="Script" path="res://scripts/world/LetterRack.gd" id="1_lr001"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lr001"]
+size = Vector3(0.6, 0.4, 0.1)
+
+[node name="LetterRack" type="StaticBody3D"]
+script = ExtResource("1_lr001")
+letters_file = ""
+rack_label = "Check for letters"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_lr001")

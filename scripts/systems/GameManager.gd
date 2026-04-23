@@ -7,6 +7,7 @@ signal item_picked_up(item_id: String)
 signal item_removed(item_id: String)
 signal board_clue_added(clue_id: String)
 signal journal_entry_added(entry_type: String, text: String)
+signal currency_changed(new_amount: int)
 
 var flags: Dictionary = {}
 var inventory: Array[String] = []
@@ -14,11 +15,13 @@ var reputation: Dictionary = {}        # npc_id -> int
 var item_db: Dictionary = {}           # item_id -> item data dict
 
 var journal_entries: Array[Dictionary] = []
-var board_clues: Array[Dictionary] = []   # {id, label, type}
-var clue_connections: Array = []          # [[str, str], ...]
+var board_clues: Array[Dictionary] = []
+var clue_connections: Array = []       # [[str, str], ...]
 var locked_deductions: Array[String] = []
 
-var _pressure_counters: Dictionary = {}  # npc_id -> remaining pressure
+var currency: int = 20                 # starting funds in shillings
+
+var _pressure_counters: Dictionary = {}
 
 
 func _ready() -> void:
@@ -72,6 +75,21 @@ func remove_item(item_id: String) -> void:
 	if item_id in inventory:
 		inventory.erase(item_id)
 		item_removed.emit(item_id)
+
+
+# --- Currency ---
+
+func spend_currency(amount: int) -> bool:
+	if currency < amount:
+		return false
+	currency -= amount
+	currency_changed.emit(currency)
+	return true
+
+
+func earn_currency(amount: int) -> void:
+	currency += amount
+	currency_changed.emit(currency)
 
 
 # --- Reputation ---
@@ -137,23 +155,25 @@ func get_pressure(npc_id: String) -> int:
 
 func get_save_data() -> Dictionary:
 	return {
-		"flags": flags,
-		"inventory": inventory,
-		"reputation": reputation,
-		"journal_entries": journal_entries,
-		"board_clues": board_clues,
-		"clue_connections": clue_connections,
+		"flags":             flags,
+		"inventory":         inventory,
+		"reputation":        reputation,
+		"currency":          currency,
+		"journal_entries":   journal_entries,
+		"board_clues":       board_clues,
+		"clue_connections":  clue_connections,
 		"locked_deductions": locked_deductions,
 		"pressure_counters": _pressure_counters,
 	}
 
 
 func load_save_data(data: Dictionary) -> void:
-	flags = data.get("flags", {})
-	inventory = Array(data.get("inventory", []), TYPE_STRING, "", null)
-	reputation = data.get("reputation", {})
-	journal_entries = data.get("journal_entries", [])
-	board_clues = data.get("board_clues", [])
-	clue_connections = data.get("clue_connections", [])
+	flags             = data.get("flags", {})
+	inventory         = Array(data.get("inventory", []), TYPE_STRING, "", null)
+	reputation        = data.get("reputation", {})
+	currency          = data.get("currency", 20)
+	journal_entries   = data.get("journal_entries", [])
+	board_clues       = data.get("board_clues", [])
+	clue_connections  = data.get("clue_connections", [])
 	locked_deductions = Array(data.get("locked_deductions", []), TYPE_STRING, "", null)
 	_pressure_counters = data.get("pressure_counters", {})

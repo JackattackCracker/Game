@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://rp00000001"]
+
+[ext_resource type="Script" path="res://scripts/world/RestPoint.gd" id="1_rp001"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rp001"]
+size = Vector3(0.9, 0.5, 1.8)
+
+[node name="RestPoint" type="StaticBody3D"]
+script = ExtResource("1_rp001")
+rest_label = "Rest"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_rp001")

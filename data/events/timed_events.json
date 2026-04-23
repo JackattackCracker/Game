@@ -1,0 +1,31 @@
+{
+	"events": [
+		{
+			"id": "letter_arrives_day1",
+			"trigger_hour": 16,
+			"consequence_flag": "letter_arrived_day1",
+			"journal_text": "A letter has arrived at your lodgings.",
+			"hud_message": "A letter waits at your lodgings."
+		},
+		{
+			"id": "pemberton_grows_nervous",
+			"trigger_hour": 24,
+			"consequence_flag": "pemberton_nervous",
+			"journal_text": "Mrs. Pemberton has become notably more guarded. Time may be running out."
+		},
+		{
+			"id": "crime_scene_tampered",
+			"trigger_hour": 48,
+			"consequence_flag": "evidence_tampered",
+			"journal_text": "You return to the study to find the desk has been cleared — someone has removed the remaining evidence.",
+			"hud_message": "Something has changed in the study."
+		},
+		{
+			"id": "witness_departs",
+			"trigger_hour": 56,
+			"consequence_flag": "key_witness_gone",
+			"journal_text": "The witness you needed to interview has left town. A chance missed.",
+			"hud_message": "Someone important has left. You may have waited too long."
+		}
+	]
+}

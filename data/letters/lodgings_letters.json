@@ -1,0 +1,20 @@
+{
+	"letters": [
+		{
+			"id": "letter_anonymous_warning",
+			"requires_flag": "letter_arrived_day1",
+			"delivered_flag": "letter_warning_delivered",
+			"board_label": "Anonymous warning letter",
+			"content": "An unsigned note on plain paper:\n\n'Detective — you are asking questions about the wrong man. The truth of Thursday night lies not with Harlow, but with whoever hired him. Look to the money, not the lawyer. You have less time than you think.\n\n— A friend'",
+			"item_id": ""
+		},
+		{
+			"id": "letter_constable_webb",
+			"requires_flag": "constable_webb_involved",
+			"delivered_flag": "letter_webb_delivered",
+			"board_label": "Webb's official note",
+			"content": "An official note on constabulary paper:\n\n'I am advised that your investigation into the Harrington matter falls outside your jurisdiction. Any further questioning of persons connected to this office will be reported to the Commissioner.\n\nConstable A. Webb'",
+			"item_id": ""
+		}
+	]
+}

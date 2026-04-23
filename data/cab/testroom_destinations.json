@@ -1,0 +1,27 @@
+{
+	"destinations": [
+		{
+			"label": "Return to Lodgings",
+			"scene": "res://scenes/world/levels/LodgingsHub.tscn",
+			"spawn": "default",
+			"cost": 2,
+			"travel_hours": 1
+		},
+		{
+			"label": "Marsh Street  (Harlow's office)",
+			"scene": "res://scenes/world/levels/LodgingsHub.tscn",
+			"spawn": "default",
+			"cost": 3,
+			"travel_hours": 1,
+			"requires_flag": "knows_harlow_location"
+		},
+		{
+			"label": "Constable's Office",
+			"scene": "res://scenes/world/levels/LodgingsHub.tscn",
+			"spawn": "default",
+			"cost": 2,
+			"travel_hours": 1,
+			"requires_flag": "constable_webb_involved"
+		}
+	]
+}

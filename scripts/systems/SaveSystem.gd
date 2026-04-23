@@ -1,23 +1,21 @@
 extends Node
 
-# Manual save/load to user://save_game.json.
-# Trigger save by interacting with a save point (desk, notebook, etc.).
-
 const SAVE_PATH := "user://save_game.json"
 
 
 func save() -> bool:
 	var player := get_tree().get_first_node_in_group("player") as Node3D
-	var player_pos := Vector3.ZERO
+	var pos := Vector3.ZERO
 	if player:
-		player_pos = player.global_position
+		pos = player.global_position
 
 	var data := {
-		"version": 1,
-		"timestamp": Time.get_datetime_string_from_system(),
-		"current_scene": get_tree().current_scene.scene_file_path,
-		"player_position": {"x": player_pos.x, "y": player_pos.y, "z": player_pos.z},
-		"game_manager": GameManager.get_save_data(),
+		"version":          2,
+		"timestamp":        Time.get_datetime_string_from_system(),
+		"current_scene":    get_tree().current_scene.scene_file_path,
+		"player_position":  {"x": pos.x, "y": pos.y, "z": pos.z},
+		"game_manager":     GameManager.get_save_data(),
+		"world_clock":      WorldClock.get_save_data(),
 	}
 
 	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
@@ -47,6 +45,7 @@ func load_save() -> bool:
 
 	var data: Dictionary = json.data
 	GameManager.load_save_data(data.get("game_manager", {}))
+	WorldClock.load_save_data(data.get("world_clock", {}))
 	return true
 
 

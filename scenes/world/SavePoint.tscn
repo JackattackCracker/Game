@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://svp00000001"]
+
+[ext_resource type="Script" path="res://scripts/world/SavePoint.gd" id="1_svp001"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_svp001"]
+size = Vector3(1.2, 0.1, 0.6)
+
+[node name="SavePoint" type="StaticBody3D"]
+script = ExtResource("1_svp001")
+save_label = "Save game"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_svp001")

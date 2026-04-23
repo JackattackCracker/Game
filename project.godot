@@ -17,6 +17,8 @@ boot_splash/show_image=false
 GameManager="*res://scenes/systems/GameManager.tscn"
 AudioManager="*res://scenes/systems/AudioManager.tscn"
 SaveSystem="*res://scenes/systems/SaveSystem.tscn"
+WorldClock="*res://scenes/systems/WorldClock.tscn"
+LevelManager="*res://scenes/systems/LevelManager.tscn"
 
 [display]
 
