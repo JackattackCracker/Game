@@ -1,0 +1,181 @@
+[gd_scene load_steps=23 format=3 uid="uid://ds00000001"]
+
+[ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="1_ds001"]
+[ext_resource type="PackedScene" path="res://scenes/npcs/NPC.tscn" id="2_ds001"]
+[ext_resource type="PackedScene" path="res://scenes/npcs/Enemy.tscn" id="3_ds001"]
+[ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="4_ds001"]
+[ext_resource type="PackedScene" path="res://scenes/ui/Inventory.tscn" id="5_ds001"]
+[ext_resource type="PackedScene" path="res://scenes/ui/ClueBoard.tscn" id="6_ds001"]
+[ext_resource type="PackedScene" path="res://scenes/npcs/DialogueBox.tscn" id="7_ds001"]
+[ext_resource type="PackedScene" path="res://scenes/ui/ExamineUI.tscn" id="8_ds001"]
+[ext_resource type="PackedScene" path="res://scenes/ui/CabUI.tscn" id="9_ds001"]
+[ext_resource type="PackedScene" path="res://scenes/world/SpawnPoint.tscn" id="10_ds001"]
+[ext_resource type="PackedScene" path="res://scenes/world/CabStop.tscn" id="11_ds001"]
+[ext_resource type="PackedScene" path="res://scenes/world/EavesdropZone.tscn" id="12_ds001"]
+[ext_resource type="Script" path="res://scripts/world/InteractableItem.gd" id="13_ds001"]
+
+[sub_resource type="Environment" id="Environment_ds001"]
+background_mode = 1
+ambient_light_source = 2
+ambient_light_color = Color(0.03, 0.04, 0.07, 1)
+ambient_light_energy = 0.3
+fog_enabled = true
+fog_light_color = Color(0.06, 0.08, 0.12, 1)
+fog_light_energy = 1.0
+fog_density = 0.09
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_crate_a"]
+size = Vector3(1.0, 1.0, 1.0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_crate_a"]
+size = Vector3(1.0, 1.0, 1.0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_crate_b"]
+size = Vector3(0.8, 0.8, 0.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_crate_b"]
+size = Vector3(0.8, 0.8, 0.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_contract"]
+size = Vector3(0.22, 0.03, 0.16)
+
+[sub_resource type="BoxMesh" id="BoxMesh_contract"]
+size = Vector3(0.22, 0.03, 0.16)
+
+[node name="Dockside" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ds001")
+
+[node name="DockLight1" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3.5, -2)
+light_color = Color(0.5, 0.6, 0.8, 1)
+light_energy = 1.5
+omni_range = 8.0
+shadow_enabled = false
+
+[node name="DockLight2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3.5, 2)
+light_color = Color(0.45, 0.55, 0.75, 1)
+light_energy = 1.2
+omni_range = 7.0
+shadow_enabled = false
+
+[node name="Room" type="Node3D" parent="."]
+
+[node name="Floor" type="CSGBox3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+size = Vector3(20, 0.2, 16)
+use_collision = true
+
+[node name="Ceiling" type="CSGBox3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.1, 0)
+size = Vector3(20, 0.2, 16)
+use_collision = true
+
+[node name="WallNorth" type="CSGBox3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -8)
+size = Vector3(20, 5.2, 0.2)
+use_collision = true
+
+[node name="WallSouth" type="CSGBox3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 8)
+size = Vector3(20, 5.2, 0.2)
+use_collision = true
+
+[node name="WallEast" type="CSGBox3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2.5, 0)
+size = Vector3(0.2, 5.2, 16)
+use_collision = true
+
+[node name="WallWest" type="CSGBox3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, 0)
+size = Vector3(0.2, 5.2, 16)
+use_collision = true
+
+[node name="CrateStack1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.5, -3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CrateStack1"]
+shape = SubResource("BoxShape3D_crate_a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CrateStack1"]
+mesh = SubResource("BoxMesh_crate_a")
+
+[node name="CrateStack2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.5, -3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CrateStack2"]
+shape = SubResource("BoxShape3D_crate_b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CrateStack2"]
+mesh = SubResource("BoxMesh_crate_b")
+
+[node name="CrateStack3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, -5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CrateStack3"]
+shape = SubResource("BoxShape3D_crate_a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CrateStack3"]
+mesh = SubResource("BoxMesh_crate_a")
+
+[node name="CrateStack4" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, 3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CrateStack4"]
+shape = SubResource("BoxShape3D_crate_a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CrateStack4"]
+mesh = SubResource("BoxMesh_crate_a")
+
+[node name="Player" parent="." instance=ExtResource("1_ds001")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
+
+[node name="DefaultSpawn" parent="." instance=ExtResource("10_ds001")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
+spawn_id = "default"
+
+[node name="Doyle" parent="." instance=ExtResource("2_ds001")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -5)
+npc_id = "doyle"
+npc_name = "Thomas Doyle"
+dialogue_file = "res://data/dialogue/doyle_dialogue.json"
+
+[node name="DocksideGuard" parent="." instance=ExtResource("3_ds001")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+patrol_points = [Vector3(5, 0, 0), Vector3(5, 0, -5), Vector3(0, 0, -5), Vector3(0, 0, 0)]
+sight_range = 9.0
+hear_range = 7.0
+
+[node name="DoyleContract" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 0.08, -4)
+script = ExtResource("13_ds001")
+item_id = "doyle_contract"
+item_label = "Examine folded agreement"
+is_pickup = true
+is_examinable = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoyleContract"]
+shape = SubResource("BoxShape3D_contract")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DoyleContract"]
+mesh = SubResource("BoxMesh_contract")
+
+[node name="DocksideEavesdrop" parent="." instance=ExtResource("12_ds001")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.0, -4)
+conversation_file = "res://data/dialogue/dockside_eavesdrop.json"
+hear_radius = 4.0
+spotted_radius = 1.8
+
+[node name="CabStop" parent="." instance=ExtResource("11_ds001")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 7)
+destinations_file = "res://data/cab/dockside_destinations.json"
+cab_label = "Hail a cab"
+
+[node name="HUD" parent="." instance=ExtResource("4_ds001")]
+[node name="Inventory" parent="." instance=ExtResource("5_ds001")]
+[node name="ClueBoard" parent="." instance=ExtResource("6_ds001")]
+[node name="DialogueBox" parent="." instance=ExtResource("7_ds001")]
+[node name="ExamineUI" parent="." instance=ExtResource("8_ds001")]
+[node name="CabUI" parent="." instance=ExtResource("9_ds001")]

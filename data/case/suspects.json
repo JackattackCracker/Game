@@ -1,0 +1,35 @@
+{
+	"min_flag": "met_lady_harrington",
+	"suspects": [
+		{
+			"id": "harlow",
+			"name": "Reginald Harlow",
+			"description": "The family solicitor. Present at the manor the night of the murder.",
+			"requires_flag": "met_harlow",
+			"correct": false,
+			"wrong_flag": "accused_harlow_wrongly",
+			"consequence_text": "Harlow is arrested on the strength of his presence at the scene. But the case against him is thin — he was a victim of Lady Harrington's scheme, not its architect. She reads the newspaper over breakfast in Paris. The case is closed, unsatisfactorily."
+		},
+		{
+			"id": "webb",
+			"name": "Constable Webb",
+			"description": "A corrupt officer. Paid to declare the death natural causes.",
+			"requires_flag": "constable_webb_involved",
+			"correct": false,
+			"wrong_flag": "accused_webb_wrongly",
+			"consequence_text": "Webb is removed from the force and tried for corruption. But he was a paid accessory, not the killer. Lady Harrington attends his trial from the public gallery."
+		},
+		{
+			"id": "lady_harrington",
+			"name": "Lady Harrington",
+			"description": "The widow. She inherits everything. She was present at the scene.",
+			"requires_flag": "met_lady_harrington",
+			"correct": true,
+			"correct_flags": ["found_threatening_letter", "harlow_testimony", "found_bribe_receipt"],
+			"good_flag": "case_solved",
+			"insufficient_flag": "accused_lady_insufficient",
+			"good_text": "You lay the evidence before Inspector Graves: the threatening letter in Lady Harrington's hand, Harlow's signed testimony placing her at the scene, and the bribe receipt linking Webb directly to her. She is arrested the following morning at the manor. The estate is frozen pending trial. Mrs. Pemberton weeps with relief. Harlow takes the first train south. The case is closed.",
+			"consequence_text": "Without sufficient proof, your accusation is dismissed by the Inspector. Lady Harrington's new solicitor files a formal complaint. The case is officially closed. She orders new curtains for the drawing room."
+		}
+	]
+}

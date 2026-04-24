@@ -1,0 +1,156 @@
+{
+	"max_pressure": 4,
+	"pressure_broken_node": "harlow_breaks",
+	"nodes": {
+		"start": {
+			"text": "A detective. I wondered when someone quieter than the constables might show up. I can't speak freely — I have clients.",
+			"set_flags": { "met_harlow": true },
+			"choices": [
+				{ "text": "You were at the manor Thursday night.", "next": "manor_thursday" },
+				{ "text": "Tell me about your relationship with Lady Harrington.", "next": "lady_h_question" },
+				{ "text": "You're frightened of something.", "next": "fear_probe" },
+				{ "text": "I'll come back when you're ready to talk.", "next": "end" }
+			]
+		},
+		"manor_thursday": {
+			"text": "I visit the manor regularly. It is a professional relationship. I have already told the constables this.",
+			"choices": [
+				{ "text": "You were there the night he died.", "next": "night_press", "uses_pressure": true },
+				{ "text": "What did you discuss on those visits?", "next": "professional_matter" },
+				{ "text": "You're frightened.", "next": "fear_probe" }
+			]
+		},
+		"night_press": {
+			"text": "I — yes. I was there. She asked me to come. To witness a document.",
+			"set_flags": { "harlow_at_manor_thursday": true },
+			"choices": [
+				{ "text": "She. Lady Harrington asked you?", "next": "lady_h_named" },
+				{ "text": "What document?", "next": "what_document" }
+			]
+		},
+		"lady_h_named": {
+			"text": "I have said too much already. If she hears I've been talking...",
+			"choices": [
+				{ "text": "She threatened you.", "next": "threatened_confirm", "uses_pressure": true },
+				{ "text": "I will protect you if you cooperate.", "next": "protection_offer" }
+			]
+		},
+		"protection_offer": {
+			"text": "You cannot protect me from her resources, Detective. But... I am very tired of being afraid.",
+			"choices": [
+				{ "text": "Then tell me the truth.", "next": "harlow_tells_truth" },
+				{ "text": "What document was she asking you to witness?", "next": "what_document" }
+			]
+		},
+		"threatened_confirm": {
+			"text": "She told me directly. 'One word, Harlow, and I'll ensure it was your hands.' Monstrous woman.",
+			"set_flags": { "harlow_threatened": true },
+			"choices": [
+				{ "text": "Tell me everything.", "next": "harlow_tells_truth" },
+				{ "text": "What happened when you arrived at the manor?", "next": "manor_arrival" }
+			]
+		},
+		"what_document": {
+			"text": "A new will. Harrington was to sign it — transferring the estate fully to her. But when I arrived he was already on the floor. There was blood.",
+			"set_flags": { "harlow_saw_body": true },
+			"choices": [
+				{ "text": "You found the body.", "next": "found_body" },
+				{ "text": "She had him killed before you arrived.", "next": "killed_before" }
+			]
+		},
+		"found_body": {
+			"text": "He was in the study. The door was open. And she was standing there — perfectly composed. 'This is unfortunate,' she said. 'For both of us.'",
+			"set_flags": { "harlow_saw_lady_at_scene": true },
+			"choices": [
+				{ "text": "She implicated you then and there.", "next": "implicated" },
+				{ "text": "Tell me about Doyle.", "next": "ask_doyle" }
+			]
+		},
+		"killed_before": {
+			"text": "By her man Doyle. I had no part in it. I swear it on my licence.",
+			"set_flags": { "harlow_named_doyle": true },
+			"choices": [
+				{ "text": "Doyle — who is he?", "next": "about_doyle" },
+				{ "text": "You found the body yourself?", "next": "found_body" }
+			]
+		},
+		"implicated": {
+			"text": "She told me I had called that evening — her word against mine, the family solicitor seen at the scene of death. I had no choice but to keep quiet.",
+			"choices": [
+				{ "text": "Tell me about Doyle.", "next": "ask_doyle" },
+				{ "text": "Will you give a formal statement?", "next": "testimony_ask" }
+			]
+		},
+		"manor_arrival": {
+			"text": "The staff had been dismissed. I should have known — she never does that unless... The door was open. Harrington was dead on the study floor.",
+			"set_flags": { "harlow_saw_body": true },
+			"choices": [
+				{ "text": "And Lady Harrington was there.", "next": "found_body" },
+				{ "text": "Who killed him?", "next": "killed_before" }
+			]
+		},
+		"fear_probe": {
+			"text": "I am simply a cautious man in a delicate business. Nothing more.",
+			"choices": [
+				{ "text": "A client is threatening you.", "next": "lady_h_named", "uses_pressure": true },
+				{ "text": "You were at the manor Thursday night.", "next": "manor_thursday" }
+			]
+		},
+		"lady_h_question": {
+			"text": "Lady Harrington is a client. I manage the family estate. Entirely routine professional work.",
+			"choices": [
+				{ "text": "She sent for you Thursday night.", "next": "night_press", "uses_pressure": true },
+				{ "text": "When did you last visit the manor?", "next": "manor_thursday" }
+			]
+		},
+		"professional_matter": {
+			"text": "Estate administration. Wills. Trust instruments. Entirely routine.",
+			"choices": [
+				{ "text": "A new will, perhaps?", "next": "what_document" },
+				{ "text": "You seem frightened.", "next": "fear_probe" }
+			]
+		},
+		"ask_doyle": {
+			"text": "A man Lady Harrington employs for arrangements. He operates from the dockside warehouses — east end, number six quayside. I have seen her write to him.",
+			"set_flags": { "harlow_named_doyle": true, "knows_doyle_location": true },
+			"choices": [
+				{ "text": "Will you give a formal statement?", "next": "testimony_ask" },
+				{ "text": "Thank you. I have what I need.", "next": "end" }
+			]
+		},
+		"about_doyle": {
+			"text": "Muscle for hire. She uses him to make things disappear. Warehouse six, east quay — that's where he operates.",
+			"set_flags": { "harlow_named_doyle": true, "knows_doyle_location": true },
+			"choices": [
+				{ "text": "Will you testify to what you've told me?", "next": "testimony_ask" },
+				{ "text": "Thank you. I'll find him.", "next": "end" }
+			]
+		},
+		"testimony_ask": {
+			"text": "If you can keep me safe from whatever she would do — yes. I will speak to the Inspector. Every detail.",
+			"set_flags": { "harlow_testimony": true },
+			"reputation_change": 1,
+			"choices": [
+				{ "text": "You have my word. Good day.", "next": "end" }
+			]
+		},
+		"harlow_tells_truth": {
+			"text": "Very well. She summoned me to the manor Thursday. Harrington was already dead when I arrived. Her man Doyle had been there. She threatened to ruin me if I spoke. That is everything.",
+			"set_flags": { "harlow_testimony": true, "harlow_named_doyle": true, "knows_doyle_location": true },
+			"reputation_change": 1,
+			"choices": [
+				{ "text": "You have done the right thing. Where is Doyle?", "next": "ask_doyle" },
+				{ "text": "Thank you, Harlow.", "next": "end" }
+			]
+		},
+		"harlow_breaks": {
+			"text": "Get out. You are going to get us both killed.",
+			"set_flags": { "harlow_hostile": true },
+			"choices": []
+		},
+		"end": {
+			"text": "Please leave. And be careful.",
+			"choices": []
+		}
+	}
+}

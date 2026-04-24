@@ -1,0 +1,12 @@
+{
+	"lines": [
+		{ "speaker": "Voice", "text": "The money came through. Same as before.", "duration": 3.0 },
+		{ "speaker": "Doyle", "text": "She always wants it quiet. I've learned that much.", "duration": 3.5, "set_flag": "dockside_eavesdrop_started" },
+		{ "speaker": "Voice", "text": "There's a detective asking questions about the manor.", "duration": 3.0 },
+		{ "speaker": "Doyle", "text": "Could be a problem. For her — and for us.", "duration": 3.0 },
+		{ "speaker": "Doyle", "text": "The arrangement was one job. Now she wants permanent silence on top of it.", "duration": 4.0 },
+		{ "speaker": "Voice", "text": "Then perhaps we renegotiate the terms.", "duration": 3.0, "set_flag": "doyle_heard_threatening" }
+	],
+	"spotted_message": "They have spotted you. Doyle is reaching for something.",
+	"complete_flag": "dockside_eavesdrop_complete"
+}

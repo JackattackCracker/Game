@@ -118,6 +118,12 @@ npc_name = "Mrs. Pemberton"
 dialogue_file = "res://data/dialogue/npc_test.json"
 schedule_file = "res://data/schedules/mrs_pemberton.json"
 
+[node name="LadyHarrington" parent="." instance=ExtResource("2_tr001")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -2)
+npc_id = "lady_harrington"
+npc_name = "Lady Harrington"
+dialogue_file = "res://data/dialogue/lady_harrington_dialogue.json"
+
 [node name="Door" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -1)
 script = ExtResource("7_tr001")

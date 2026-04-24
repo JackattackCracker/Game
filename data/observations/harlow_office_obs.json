@@ -1,0 +1,24 @@
+{
+	"spot_label": "Examine Harlow's desk area",
+	"max_selections": 2,
+	"observations": [
+		{
+			"text": "An overturned inkwell — not cleaned up. Someone left this desk in considerable haste.",
+			"flag": "obs_harlow_inkwell",
+			"board_label": "Overturned inkwell — hasty departure",
+			"journal_entry": "The inkwell at Harlow's desk has been knocked over and left to dry. Something rattled him recently."
+		},
+		{
+			"text": "Papers in the waste basket — the top sheet is partially burnt. I can make out the words 'destroy all correspondence.'",
+			"flag": "obs_harlow_burnt_note",
+			"board_label": "Burnt note: 'destroy all correspondence'",
+			"journal_entry": "Someone — almost certainly Harlow — attempted to burn an instruction reading 'destroy all correspondence.' He was methodically cleaning house."
+		},
+		{
+			"text": "Fresh scratch marks around the wall safe — it was opened recently, and apparently in some haste.",
+			"flag": "obs_harlow_safe",
+			"board_label": "Wall safe — recently opened in haste",
+			"journal_entry": "The safe behind Harlow's bookshelf shows fresh scratch marks consistent with a hasty combination attempt. Documents may have been removed or concealed."
+		}
+	]
+}

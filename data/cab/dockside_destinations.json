@@ -4,8 +4,15 @@
 			"label": "Return to Lodgings",
 			"scene": "res://scenes/world/levels/LodgingsHub.tscn",
 			"spawn": "default",
-			"cost": 2,
-			"travel_hours": 1
+			"cost": 4,
+			"travel_hours": 2
+		},
+		{
+			"label": "The Manor  (investigation site)",
+			"scene": "res://scenes/world/levels/TestRoom.tscn",
+			"spawn": "default",
+			"cost": 4,
+			"travel_hours": 2
 		},
 		{
 			"label": "Marsh Street  (Harlow's office)",
@@ -19,17 +26,9 @@
 			"label": "Constable's Office",
 			"scene": "res://scenes/world/levels/ConstableOffice.tscn",
 			"spawn": "default",
-			"cost": 2,
+			"cost": 3,
 			"travel_hours": 1,
 			"requires_flag": "constable_webb_involved"
-		},
-		{
-			"label": "The Dockside",
-			"scene": "res://scenes/world/levels/Dockside.tscn",
-			"spawn": "default",
-			"cost": 4,
-			"travel_hours": 2,
-			"requires_flag": "knows_doyle_location"
 		}
 	]
 }

@@ -1,0 +1,126 @@
+{
+	"max_pressure": 3,
+	"pressure_broken_node": "webb_shuts_down",
+	"nodes": {
+		"start": {
+			"text": "This investigation has been concluded to my satisfaction. I suggest you move along.",
+			"set_flags": { "met_webb": true },
+			"choices": [
+				{ "text": "I have questions about the Harrington case.", "next": "harrington_case" },
+				{ "text": "You concluded it remarkably quickly.", "next": "quick_conclusion" },
+				{ "text": "I know about the payment, Constable.", "next": "bribe_confrontation", "uses_pressure": true },
+				{ "text": "Good day.", "next": "end" }
+			]
+		},
+		"harrington_case": {
+			"text": "Natural causes, pending full examination. Nothing suspicious. The family concurs.",
+			"choices": [
+				{ "text": "Natural causes, with a forced desk drawer.", "next": "desk_challenge", "uses_pressure": true },
+				{ "text": "The family agreed very readily.", "next": "family_agreement" },
+				{ "text": "Thank you, Constable.", "next": "end" }
+			]
+		},
+		"desk_challenge": {
+			"text": "Details of ongoing investigations are confidential. I'd thank you not to interfere with police business.",
+			"choices": [
+				{ "text": "I'm trying to solve a murder.", "next": "murder_word" },
+				{ "text": "Someone paid you to look the other way.", "next": "bribe_confrontation", "uses_pressure": true }
+			]
+		},
+		"murder_word": {
+			"text": "Murder. That is a strong word. You'd better have evidence before you throw it around.",
+			"choices": [
+				{ "text": "I'm gathering it.", "next": "gathering_evidence" },
+				{ "text": "I already have some.", "next": "bribe_confrontation", "uses_pressure": true }
+			]
+		},
+		"bribe_confrontation": {
+			"text": "You are playing a very dangerous game. I would strongly advise you to drop this enquiry.",
+			"set_flags": { "webb_threatened_player": true },
+			"choices": [
+				{ "text": "Is that a threat, Constable?", "next": "threat_or_warning" },
+				{ "text": "How much did Lady Harrington pay you?", "next": "how_much", "uses_pressure": true }
+			]
+		},
+		"threat_or_warning": {
+			"text": "It is professional courtesy. Now get out of this office.",
+			"choices": [
+				{ "text": "I'll be back with the Inspector.", "next": "inspector_threat" },
+				{ "text": "How much did she pay you?", "next": "how_much", "uses_pressure": true }
+			]
+		},
+		"how_much": {
+			"text": "I have absolutely no idea what you are talking about. This conversation is finished.",
+			"set_flags": { "webb_denied_bribe": true },
+			"choices": [
+				{ "text": "The receipt says otherwise.", "next": "receipt_confrontation" },
+				{ "text": "Good day, Constable.", "next": "end" }
+			]
+		},
+		"receipt_confrontation": {
+			"text": "... Where did you — that is stolen evidence. I will have you arrested for this.",
+			"set_flags": { "webb_knows_receipt_found": true },
+			"choices": [
+				{ "text": "Arrested by whom? You?", "next": "webb_cornered" }
+			]
+		},
+		"webb_cornered": {
+			"text": "Thirty pounds. That is all it was. I was told it was a domestic dispute — I did not know anyone was dead until after.",
+			"set_flags": { "webb_admitted_bribe": true },
+			"reputation_change": 1,
+			"choices": [
+				{ "text": "You have a chance to do the right thing now.", "next": "webb_cooperates" },
+				{ "text": "That is for the Inspector to decide.", "next": "end" }
+			]
+		},
+		"webb_cooperates": {
+			"text": "Fine. I will write a statement. Lady Harrington approached me directly. I want that on record — I did not know the full extent of it.",
+			"set_flags": { "webb_cooperating": true },
+			"choices": [
+				{ "text": "I will do what I can. Good day.", "next": "end" }
+			]
+		},
+		"quick_conclusion": {
+			"text": "Efficiency is a virtue in this office.",
+			"choices": [
+				{ "text": "You were on the scene for fifteen minutes.", "next": "fifteen_minutes", "uses_pressure": true },
+				{ "text": "The family must have been very grateful.", "next": "family_agreement" }
+			]
+		},
+		"fifteen_minutes": {
+			"text": "I conducted a thorough—",
+			"choices": [
+				{ "text": "She paid you thirty pounds.", "next": "bribe_confrontation", "uses_pressure": true },
+				{ "text": "The family appreciated the discretion, I'm sure.", "next": "family_agreement" }
+			]
+		},
+		"family_agreement": {
+			"text": "The widow is bereaved. Of course she was grateful for a swift resolution.",
+			"choices": [
+				{ "text": "Grateful with thirty pounds.", "next": "bribe_confrontation", "uses_pressure": true },
+				{ "text": "I'm sure. Good day.", "next": "end" }
+			]
+		},
+		"gathering_evidence": {
+			"text": "Then come back when you have it. Until that time this office is closed to you.",
+			"choices": [
+				{ "text": "Good day.", "next": "end" }
+			]
+		},
+		"inspector_threat": {
+			"text": "Be my guest. The Inspector will hear about your obstruction at the same time.",
+			"choices": [
+				{ "text": "We shall see. Good day.", "next": "end" }
+			]
+		},
+		"webb_shuts_down": {
+			"text": "OUT. Now. Or I arrest you for harassment of a serving officer.",
+			"set_flags": { "webb_hostile": true },
+			"choices": []
+		},
+		"end": {
+			"text": "Good day.",
+			"choices": []
+		}
+	}
+}

@@ -1,0 +1,192 @@
+[gd_scene load_steps=27 format=3 uid="uid://co00000001"]
+
+[ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="1_co001"]
+[ext_resource type="PackedScene" path="res://scenes/npcs/NPC.tscn" id="2_co001"]
+[ext_resource type="PackedScene" path="res://scenes/npcs/Enemy.tscn" id="3_co001"]
+[ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="4_co001"]
+[ext_resource type="PackedScene" path="res://scenes/ui/Inventory.tscn" id="5_co001"]
+[ext_resource type="PackedScene" path="res://scenes/ui/ClueBoard.tscn" id="6_co001"]
+[ext_resource type="PackedScene" path="res://scenes/npcs/DialogueBox.tscn" id="7_co001"]
+[ext_resource type="PackedScene" path="res://scenes/ui/ExamineUI.tscn" id="8_co001"]
+[ext_resource type="PackedScene" path="res://scenes/ui/ObservationUI.tscn" id="9_co001"]
+[ext_resource type="PackedScene" path="res://scenes/ui/CabUI.tscn" id="10_co001"]
+[ext_resource type="PackedScene" path="res://scenes/world/SpawnPoint.tscn" id="11_co001"]
+[ext_resource type="PackedScene" path="res://scenes/world/CabStop.tscn" id="12_co001"]
+[ext_resource type="PackedScene" path="res://scenes/world/ObservationSpot.tscn" id="13_co001"]
+[ext_resource type="PackedScene" path="res://scenes/world/EavesdropZone.tscn" id="14_co001"]
+[ext_resource type="Script" path="res://scripts/world/InteractableItem.gd" id="15_co001"]
+
+[sub_resource type="Environment" id="Environment_co001"]
+background_mode = 1
+ambient_light_source = 2
+ambient_light_color = Color(0.07, 0.07, 0.05, 1)
+ambient_light_energy = 0.45
+fog_enabled = true
+fog_light_color = Color(0.12, 0.12, 0.08, 1)
+fog_light_energy = 0.6
+fog_density = 0.03
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_counter"]
+size = Vector3(2.2, 0.1, 0.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_counter"]
+size = Vector3(2.2, 0.1, 0.9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_board_co"]
+size = Vector3(2.0, 1.2, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_board_co"]
+size = Vector3(2.0, 1.2, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_receipt"]
+size = Vector3(0.15, 0.02, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_receipt"]
+size = Vector3(0.15, 0.02, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cabinet_co"]
+size = Vector3(0.5, 1.7, 0.65)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cabinet_co"]
+size = Vector3(0.5, 1.7, 0.65)
+
+[node name="ConstableOffice" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_co001")
+
+[node name="CeilingLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8, 0)
+light_color = Color(1, 0.95, 0.7, 1)
+light_energy = 2.8
+omni_range = 12.0
+shadow_enabled = false
+
+[node name="BackLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.6, -4)
+light_color = Color(0.9, 0.9, 0.75, 1)
+light_energy = 1.5
+omni_range = 7.0
+shadow_enabled = false
+
+[node name="Room" type="Node3D" parent="."]
+
+[node name="Floor" type="CSGBox3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+size = Vector3(12, 0.2, 10)
+use_collision = true
+
+[node name="Ceiling" type="CSGBox3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1, 0)
+size = Vector3(12, 0.2, 10)
+use_collision = true
+
+[node name="WallNorth" type="CSGBox3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -5)
+size = Vector3(12, 3.2, 0.2)
+use_collision = true
+
+[node name="WallSouth" type="CSGBox3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 5)
+size = Vector3(12, 3.2, 0.2)
+use_collision = true
+
+[node name="WallEast" type="CSGBox3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.5, 0)
+size = Vector3(0.2, 3.2, 10)
+use_collision = true
+
+[node name="WallWest" type="CSGBox3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.5, 0)
+size = Vector3(0.2, 3.2, 10)
+use_collision = true
+
+[node name="DividerWall" type="CSGBox3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.0, -1.5)
+size = Vector3(0.15, 2.0, 3.0)
+use_collision = true
+
+[node name="Counter" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, -1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Counter"]
+shape = SubResource("BoxShape3D_counter")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Counter"]
+mesh = SubResource("BoxMesh_counter")
+
+[node name="BulletinBoard" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.65, -4.9)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BulletinBoard"]
+shape = SubResource("BoxShape3D_board_co")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BulletinBoard"]
+mesh = SubResource("BoxMesh_board_co")
+
+[node name="FilingCabinet" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.85, -4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FilingCabinet"]
+shape = SubResource("BoxShape3D_cabinet_co")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FilingCabinet"]
+mesh = SubResource("BoxMesh_cabinet_co")
+
+[node name="Player" parent="." instance=ExtResource("1_co001")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="DefaultSpawn" parent="." instance=ExtResource("11_co001")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+spawn_id = "default"
+
+[node name="ConstableWebb" parent="." instance=ExtResource("2_co001")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2)
+npc_id = "constable_webb"
+npc_name = "Constable Webb"
+dialogue_file = "res://data/dialogue/constable_webb_dialogue.json"
+
+[node name="OfficeGuard" parent="." instance=ExtResource("3_co001")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -3)
+patrol_points = [Vector3(4, 0, -3), Vector3(4, 0, 1), Vector3(-1, 0, 1)]
+sight_range = 8.0
+hear_range = 5.0
+damage_per_hit = 5.0
+
+[node name="BribeReceipt" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.05, -1.2)
+script = ExtResource("15_co001")
+item_id = "bribe_receipt"
+item_label = "Examine folded note"
+is_pickup = true
+is_examinable = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BribeReceipt"]
+shape = SubResource("BoxShape3D_receipt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BribeReceipt"]
+mesh = SubResource("BoxMesh_receipt")
+
+[node name="DutyDeskObservation" parent="." instance=ExtResource("13_co001")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1)
+observation_file = "res://data/observations/constable_office_obs.json"
+spot_flag = "observed_webb_desk"
+
+[node name="BackOfficeEavesdrop" parent="." instance=ExtResource("14_co001")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.0, -3.5)
+conversation_file = "res://data/dialogue/webb_eavesdrop.json"
+hear_radius = 3.5
+spotted_radius = 1.5
+
+[node name="CabStop" parent="." instance=ExtResource("12_co001")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 4.5)
+destinations_file = "res://data/cab/constable_office_destinations.json"
+cab_label = "Hail a cab"
+
+[node name="HUD" parent="." instance=ExtResource("4_co001")]
+[node name="Inventory" parent="." instance=ExtResource("5_co001")]
+[node name="ClueBoard" parent="." instance=ExtResource("6_co001")]
+[node name="DialogueBox" parent="." instance=ExtResource("7_co001")]
+[node name="ExamineUI" parent="." instance=ExtResource("8_co001")]
+[node name="ObservationUI" parent="." instance=ExtResource("9_co001")]
+[node name="CabUI" parent="." instance=ExtResource("10_co001")]

@@ -10,23 +10,51 @@
 		{
 			"id": "harlow_authored_note",
 			"requires_clues": ["found_note_watermark", "found_card_thursday"],
-			"description": "The torn note was written on Harlow's own paper, and both reference Thursday. Harlow wrote the note — or dictated it.",
+			"description": "The torn note was written on Harlow's own paper, and both reference Thursday. Harlow wrote the note — or was instructed to.",
 			"set_flag": "deduced_harlow_authored_note",
 			"board_label": "Harlow wrote the note"
 		},
 		{
 			"id": "room_was_searched",
 			"requires_clues": ["obs_drawer_forced", "torn_note"],
-			"description": "The drawer was forced and a document destroyed — someone searched this room looking for exactly what the note references.",
+			"description": "The drawer was forced and a document destroyed — someone searched this room for exactly what the note references.",
 			"set_flag": "deduced_room_was_searched",
 			"board_label": "Study deliberately searched"
 		},
 		{
 			"id": "eavesdrop_connects_to_note",
 			"requires_clues": ["conspirators_exchange", "torn_note"],
-			"description": "The overheard voices confirmed papers were taken from this room. The torn note is what they were looking for — or what they left behind.",
+			"description": "The overheard voices confirmed papers were removed from this room. The torn note was what they were looking for — or what they left behind.",
 			"set_flag": "deduced_note_was_target",
 			"board_label": "Note was the target"
+		},
+		{
+			"id": "lady_h_motive",
+			"requires_clues": ["found_threatening_letter", "lady_h_inherits"],
+			"description": "Lady Harrington both threatened Harlow into silence and stood to inherit the entire estate. Motive and means, confirmed.",
+			"set_flag": "deduced_lady_h_motive",
+			"board_label": "Lady H: motive and means confirmed"
+		},
+		{
+			"id": "webb_paid_to_look_away",
+			"requires_clues": ["found_bribe_receipt", "obs_webb_torn_log"],
+			"description": "The bribe receipt and the torn duty log tell the same story: Webb was paid to suppress Thursday's official record entirely.",
+			"set_flag": "deduced_webb_corrupt",
+			"board_label": "Webb bribed — Thursday record destroyed"
+		},
+		{
+			"id": "doyle_the_instrument",
+			"requires_clues": ["harlow_named_doyle", "found_ledger_payments"],
+			"description": "Harlow named Doyle as Lady Harrington's instrument, and the ledger records two hundred pounds paid to 'D.' in the weeks before the murder.",
+			"set_flag": "deduced_doyle_hired",
+			"board_label": "Doyle hired — payments confirm it"
+		},
+		{
+			"id": "conspiracy_complete",
+			"requires_clues": ["found_threatening_letter", "harlow_testimony"],
+			"description": "The threatening letter and Harlow's testimony establish a clear chain: Lady Harrington hired Doyle, silenced Webb, and framed Harlow. This is the full conspiracy.",
+			"set_flag": "deduced_conspiracy_complete",
+			"board_label": "Full conspiracy — Lady H, Doyle, Webb"
 		}
 	]
 }

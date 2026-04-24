@@ -14,7 +14,7 @@
 				"text": "Turning it over, you find an engraving on the back: 'To E.H. — Time reveals all.' The hands are stopped at 11:47.",
 				"flag": "found_watch_inscription",
 				"board_label": "Watch engraved 'To E.H.'",
-				"journal_entry": "The back of the pocket watch reads: 'To E.H. — Time reveals all.' Someone's initials. The hands are frozen at 11:47 — the moment something happened."
+				"journal_entry": "The back of the pocket watch reads: 'To E.H. — Time reveals all.' The hands are frozen at 11:47 — the moment something happened."
 			}
 		]
 	},
@@ -61,7 +61,92 @@
 				"text": "On the back, in pencil, a single word: 'Thursday.' Underlined twice.",
 				"flag": "found_card_thursday",
 				"board_label": "Card: 'Thursday' pencilled",
-				"journal_entry": "The back of Harlow's calling card has 'Thursday' written in pencil and underlined. The torn note mentions a Thursday meeting."
+				"journal_entry": "The back of Harlow's calling card has 'Thursday' written in pencil and underlined. The torn note also references Thursday."
+			}
+		]
+	},
+	{
+		"id": "ledger",
+		"name": "Account Ledger",
+		"description": "A solicitor's account ledger. Several entries are marked with only an initial — 'D.' Substantial sums.",
+		"sprite": "",
+		"is_clue": true,
+		"is_examinable": true,
+		"examination_discoveries": [
+			{
+				"axis": "y",
+				"angle_min": 80,
+				"angle_max": 140,
+				"text": "Payments to 'D.' — nearly two hundred pounds over three instalments. The dates align with the weeks before Thursday.",
+				"flag": "found_ledger_payments",
+				"board_label": "Ledger: payments to 'D.' before the murder",
+				"journal_entry": "Harlow's account ledger records payments totalling nearly £200 to an unnamed party listed only as 'D.' The payments end the week of the murder."
+			}
+		]
+	},
+	{
+		"id": "threatening_letter",
+		"name": "Letter on Manor Stationery",
+		"description": "A letter on Harrington Manor headed paper. The handwriting is feminine, precise, and cold.",
+		"sprite": "",
+		"is_clue": true,
+		"is_examinable": true,
+		"examination_discoveries": [
+			{
+				"axis": "x",
+				"angle_min": 155,
+				"angle_max": 205,
+				"text": "Reading it carefully: 'Should you speak of our arrangement, I will ensure the authorities learn whose hand held the object. You have no witnesses. I have every resource.' The signature: E. Harrington — but this hand is not Edmund's.",
+				"flag": "found_threatening_letter",
+				"board_label": "Threatening letter — signed Lady H., to Harlow",
+				"journal_entry": "A letter threatening Harlow into silence, signed 'E. Harrington.' The handwriting is not Edmund's — it is Lady Harrington's. She wrote this herself."
+			}
+		]
+	},
+	{
+		"id": "bribe_receipt",
+		"name": "Folded Note",
+		"description": "A folded scrap of paper. A figure in pounds and two sets of initials: 'C.W.' and 'E.H.'",
+		"sprite": "",
+		"is_clue": true,
+		"is_examinable": true,
+		"examination_discoveries": [
+			{
+				"axis": "y",
+				"angle_min": 60,
+				"angle_max": 130,
+				"text": "'C.W.' — Constable Webb. 'E.H.' — not Edmund Harrington. The other hand here matches the threatening letter: Eleanor Harrington. A bribe, documented.",
+				"flag": "found_bribe_receipt",
+				"board_label": "Bribe receipt — Webb paid by Lady Harrington",
+				"journal_entry": "A note recording a payment from 'E.H.' to 'C.W.' The handwriting matches Lady Harrington's threatening letter to Harlow. Webb was paid to declare the death natural causes."
+			}
+		]
+	},
+	{
+		"id": "doyle_contract",
+		"name": "Folded Agreement",
+		"description": "An unsigned agreement, but specific. It describes a 'service to be rendered at Harrington Estate, Thursday eve.' Ten pounds on completion.",
+		"sprite": "",
+		"is_clue": true,
+		"is_examinable": true,
+		"examination_discoveries": [
+			{
+				"axis": "x",
+				"angle_min": 150,
+				"angle_max": 210,
+				"text": "The paper matches the manor's headed stock. Holding it at an angle — a distinctive violet ink, faded but unmistakeable. Lady Harrington's writing set uses this exact colour.",
+				"flag": "found_doyle_contract",
+				"board_label": "Doyle's contract — manor paper, violet ink",
+				"journal_entry": "A contract commissioning 'services' at the manor Thursday evening, written on manor stationery in Lady Harrington's distinctive violet ink. This hired the killer."
+			},
+			{
+				"axis": "y",
+				"angle_min": 70,
+				"angle_max": 130,
+				"text": "The back shows a partial fingerprint in dried ink — and a watermark matching the threatening letter sent to Harlow. Both documents from the same hand.",
+				"flag": "found_bribe_receipt",
+				"board_label": "Contract watermark matches threatening letter",
+				"journal_entry": "The contract's watermark is identical to the threatening letter found at Harlow's office. The same person wrote both — Lady Harrington."
 			}
 		]
 	}

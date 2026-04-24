@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://lh00000001"]
+[gd_scene load_steps=28 format=3 uid="uid://lh00000001"]
 
 [ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="1_lh001"]
 [ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="2_lh001"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" path="res://scenes/world/LetterRack.tscn" id="13_lh001"]
 [ext_resource type="PackedScene" path="res://scenes/world/LevelDoor.tscn" id="14_lh001"]
 [ext_resource type="PackedScene" path="res://scenes/world/CabStop.tscn" id="15_lh001"]
+[ext_resource type="PackedScene" path="res://scenes/world/AccusationBoard.tscn" id="16_lh001"]
+[ext_resource type="PackedScene" path="res://scenes/ui/AccusationUI.tscn" id="17_lh001"]
 
 [sub_resource type="Environment" id="Environment_lh001"]
 background_mode = 1
@@ -139,6 +141,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 4)
 destinations_file = "res://data/cab/lodgings_destinations.json"
 cab_label = "Hail a cab"
 
+[node name="CaseBoard" parent="." instance=ExtResource("16_lh001")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9, 1.75, -1.5)
+board_label = "Review the evidence — make an accusation"
+
 [node name="HUD" parent="." instance=ExtResource("2_lh001")]
 [node name="Inventory" parent="." instance=ExtResource("3_lh001")]
 [node name="ClueBoard" parent="." instance=ExtResource("4_lh001")]
@@ -147,3 +153,4 @@ cab_label = "Hail a cab"
 [node name="ObservationUI" parent="." instance=ExtResource("7_lh001")]
 [node name="RestUI" parent="." instance=ExtResource("8_lh001")]
 [node name="CabUI" parent="." instance=ExtResource("9_lh001")]
+[node name="AccusationUI" parent="." instance=ExtResource("17_lh001")]

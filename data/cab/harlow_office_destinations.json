@@ -4,16 +4,15 @@
 			"label": "Return to Lodgings",
 			"scene": "res://scenes/world/levels/LodgingsHub.tscn",
 			"spawn": "default",
-			"cost": 2,
+			"cost": 3,
 			"travel_hours": 1
 		},
 		{
-			"label": "Marsh Street  (Harlow's office)",
-			"scene": "res://scenes/world/levels/HarlowOffice.tscn",
+			"label": "The Manor  (investigation site)",
+			"scene": "res://scenes/world/levels/TestRoom.tscn",
 			"spawn": "default",
 			"cost": 3,
-			"travel_hours": 1,
-			"requires_flag": "knows_harlow_location"
+			"travel_hours": 1
 		},
 		{
 			"label": "Constable's Office",

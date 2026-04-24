@@ -1,0 +1,24 @@
+{
+	"spot_label": "Examine the duty desk",
+	"max_selections": 2,
+	"observations": [
+		{
+			"text": "The duty log for last Thursday — an entry has been torn out cleanly. The time stub remains: 9:40 PM.",
+			"flag": "obs_webb_torn_log",
+			"board_label": "Torn duty log — Thursday 9:40 PM",
+			"journal_entry": "Webb removed an entry from the official duty log for Thursday evening. Whatever he recorded — or was called to — has been deliberately erased."
+		},
+		{
+			"text": "Beneath the desk blotter: a folded ten-pound banknote. Fresh-printed. Considerably more than a constable's weekly wage.",
+			"flag": "obs_webb_banknote",
+			"board_label": "Fresh banknote — beneath Webb's blotter",
+			"journal_entry": "A ten-pound note concealed under Webb's desk blotter. Part of a larger payment, or simply greed made visible."
+		},
+		{
+			"text": "An unsealed envelope in the waste basket, addressed to 'E.H.' at Harrington Manor. The letter inside has been removed.",
+			"flag": "obs_webb_envelope",
+			"board_label": "Unsealed envelope to 'E.H.' — letter missing",
+			"journal_entry": "Webb began a letter to someone at the Harrington manor, then thought better of sending it. The initial 'E.H.' is ambiguous — Edmund, or Eleanor?"
+		}
+	]
+}

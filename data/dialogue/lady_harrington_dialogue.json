@@ -1,0 +1,156 @@
+{
+	"max_pressure": 4,
+	"pressure_broken_node": "lady_composed",
+	"nodes": {
+		"start": {
+			"text": "Detective. I was told to expect someone. I confess I find this intrusion rather trying. My husband is barely cold.",
+			"set_flags": { "met_lady_harrington": true },
+			"choices": [
+				{ "text": "I'll be brief. Tell me about Thursday night.", "next": "thursday_night" },
+				{ "text": "I understand your grief. I need to ask about Harlow's visit.", "next": "harlow_visit" },
+				{ "text": "Your husband's watch — it was found some distance from the body.", "next": "the_watch" },
+				{ "text": "I have nothing more to ask at present.", "next": "end_polite" }
+			]
+		},
+		"thursday_night": {
+			"text": "I retired early. Edmund was in his study — he often worked late. I heard nothing until the morning, when Mrs. Pemberton found him.",
+			"choices": [
+				{ "text": "Did you hear any visitors arrive?", "next": "no_visitors" },
+				{ "text": "Mrs. Pemberton seems very distressed.", "next": "pemberton_deflect" },
+				{ "text": "Ask about Harlow.", "next": "harlow_visit" }
+			]
+		},
+		"no_visitors": {
+			"text": "None that I was aware of. The house was quite. Edmund had given the staff the evening off.",
+			"set_flags": { "lady_h_staff_dismissed": true },
+			"choices": [
+				{ "text": "That's unusual on a Thursday.", "next": "unusual_thursday" },
+				{ "text": "Ask about Harlow.", "next": "harlow_visit" }
+			]
+		},
+		"unusual_thursday": {
+			"text": "Edmund was particular about his privacy when conducting business. It was not so unusual.",
+			"choices": [
+				{ "text": "What business was he conducting?", "next": "business_deflect" },
+				{ "text": "Ask about the watch.", "next": "the_watch" }
+			]
+		},
+		"business_deflect": {
+			"text": "Estate matters. I did not involve myself in the particulars. That is what one retains a solicitor for.",
+			"choices": [
+				{ "text": "Speaking of which — Harlow visited that evening.", "next": "harlow_visit" },
+				{ "text": "The estate — how does it pass now?", "next": "estate_pass", "uses_pressure": true }
+			]
+		},
+		"estate_pass": {
+			"text": "To me, in trust. As it was always arranged. Edmund was meticulous about such things.",
+			"set_flags": { "lady_h_inherits": true },
+			"choices": [
+				{ "text": "A considerable inheritance.", "next": "inheritance_pressure", "uses_pressure": true },
+				{ "text": "Ask about Harlow.", "next": "harlow_visit" }
+			]
+		},
+		"inheritance_pressure": {
+			"text": "You are implying something, Detective. I would choose your next words with care.",
+			"set_flags": { "lady_harrington_suspicious": true },
+			"reputation_change": -1,
+			"choices": [
+				{ "text": "I imply nothing. Ask about Harlow.", "next": "harlow_visit" },
+				{ "text": "I am simply establishing the facts.", "next": "harlow_visit" }
+			]
+		},
+		"harlow_visit": {
+			"text": "Mr. Harlow is our family solicitor. He visits regularly on matters of business. If he was here that evening it would have been entirely routine.",
+			"choices": [
+				{ "text": "The staff were dismissed that night.", "next": "harlow_private_meeting", "uses_pressure": true },
+				{ "text": "Did you see him yourself?", "next": "harlow_denied" },
+				{ "text": "Ask about the watch.", "next": "the_watch" }
+			]
+		},
+		"harlow_denied": {
+			"text": "I told you — I retired early. If Harlow came, he would have seen Edmund privately. That was their arrangement.",
+			"choices": [
+				{ "text": "Their arrangement. Interesting phrase.", "next": "arrangement_press", "uses_pressure": true },
+				{ "text": "Thank you. I have no more questions.", "next": "end_polite" }
+			]
+		},
+		"harlow_private_meeting": {
+			"text": "As I said, Edmund preferred privacy for business matters. Harlow's visit would have been expected.",
+			"choices": [
+				{ "text": "Expected by whom?", "next": "expected_press", "uses_pressure": true },
+				{ "text": "I'll speak to Harlow directly.", "next": "end_polite" }
+			]
+		},
+		"expected_press": {
+			"text": "By Edmund. By Harlow. I really do not see what you are driving at, Detective.",
+			"choices": [
+				{ "text": "I think you do. But I won't press it further today.", "next": "end_suspicious" },
+				{ "text": "One last question about the watch.", "next": "the_watch" }
+			]
+		},
+		"arrangement_press": {
+			"text": "I meant only that they had a regular professional relationship. Now I must insist we conclude this.",
+			"choices": [
+				{ "text": "Of course. I'll see myself out.", "next": "end_suspicious" }
+			]
+		},
+		"the_watch": {
+			"text": "Edmund's pocket watch? It was a gift — from me, on our tenth anniversary. The engraving was my idea.",
+			"choices": [
+				{ "text": "'To E.H.' — Edmund Harrington.", "next": "watch_acknowledge" },
+				{ "text": "It was found away from the body. Any idea how?", "next": "watch_location", "uses_pressure": true }
+			]
+		},
+		"watch_acknowledge": {
+			"text": "Yes. We were... quite happy once.",
+			"choices": [
+				{ "text": "Were? Past tense?", "next": "marriage_press", "uses_pressure": true },
+				{ "text": "I'm sorry for your loss. I'll leave you in peace.", "next": "end_polite" }
+			]
+		},
+		"watch_location": {
+			"text": "I have no idea. He may have dropped it. He was clumsy in his cups.",
+			"set_flags": { "lady_h_mentioned_drinking": true },
+			"choices": [
+				{ "text": "He was drinking that evening?", "next": "drinking_press" },
+				{ "text": "I'll look into it further.", "next": "end_polite" }
+			]
+		},
+		"drinking_press": {
+			"text": "Edmund had a habit. I am not proud of it. But it is hardly relevant to your investigation.",
+			"choices": [
+				{ "text": "It may be more relevant than you think.", "next": "end_suspicious" },
+				{ "text": "Understood. Thank you for your time.", "next": "end_polite" }
+			]
+		},
+		"marriage_press": {
+			"text": "I am recently widowed, Detective. I would appreciate a degree of sensitivity.",
+			"reputation_change": -1,
+			"choices": [
+				{ "text": "Of course. I am sorry.", "next": "end_polite" }
+			]
+		},
+		"pemberton_deflect": {
+			"text": "She is loyal. She has been with us a long time. I'm sure she is simply shaken.",
+			"choices": [
+				{ "text": "Ask about Harlow.", "next": "harlow_visit" },
+				{ "text": "Ask about Thursday night.", "next": "thursday_night" }
+			]
+		},
+		"lady_composed": {
+			"text": "I think that is quite enough, Detective. I will be speaking to my solicitor about this intrusion.",
+			"choices": [
+				{ "text": "Of course. Good day.", "next": "end_suspicious" }
+			]
+		},
+		"end_polite": {
+			"text": "Good day, Detective. I trust this matter will be resolved with appropriate discretion.",
+			"choices": []
+		},
+		"end_suspicious": {
+			"text": "Good day.",
+			"set_flags": { "lady_harrington_suspicious": true },
+			"choices": []
+		}
+	}
+}

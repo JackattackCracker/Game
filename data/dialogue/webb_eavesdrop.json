@@ -1,0 +1,11 @@
+{
+	"lines": [
+		{ "speaker": "Constable Webb", "text": "Thirty pieces. Is that what a man's conscience goes for nowadays.", "duration": 3.5 },
+		{ "speaker": "Constable Webb", "text": "Should've been more. A damn sight more.", "duration": 3.0, "set_flag": "heard_webb_bribe" },
+		{ "speaker": "Constable Webb", "text": "Natural causes. Natural bloody causes. Good lord.", "duration": 3.5 },
+		{ "speaker": "Constable Webb", "text": "If that detective keeps sniffing around...", "duration": 2.5 },
+		{ "speaker": "Constable Webb", "text": "Just keep your head down, Arthur. Keep your head down.", "duration": 4.0 }
+	],
+	"spotted_message": "Webb has seen you. He will be hostile now.",
+	"complete_flag": "eavesdropped_webb"
+}

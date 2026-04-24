@@ -1,0 +1,61 @@
+{
+	"max_pressure": 1,
+	"pressure_broken_node": "doyle_violent",
+	"nodes": {
+		"start": {
+			"text": "You've got the wrong warehouse, friend. I'd turn around if I were you.",
+			"set_flags": { "met_doyle": true },
+			"choices": [
+				{ "text": "Harrington. You were at the manor Thursday night.", "next": "manor_deny" },
+				{ "text": "Lady Harrington sent me. She wants a word.", "next": "lady_h_bluff" },
+				{ "text": "You're right. My mistake.", "next": "end" }
+			]
+		},
+		"manor_deny": {
+			"text": "Don't know what you're talking about.",
+			"choices": [
+				{ "text": "I found your contract. Ten pounds for a night's work.", "next": "contract_confront", "uses_pressure": true }
+			]
+		},
+		"lady_h_bluff": {
+			"text": "She doesn't send people. She writes. And you don't look like a footman.",
+			"choices": [
+				{ "text": "Sharp. I'm a detective. It's over.", "next": "manor_deny" },
+				{ "text": "Fair enough.", "next": "end" }
+			]
+		},
+		"contract_confront": {
+			"text": "You had better leave this warehouse right now. Before this gets considerably worse for you.",
+			"set_flags": { "doyle_threatened_player": true },
+			"choices": [
+				{ "text": "She's going to prison. You can go with her or testify against her.", "next": "doyle_rattled" },
+				{ "text": "I'm leaving. For now.", "next": "end" }
+			]
+		},
+		"doyle_rattled": {
+			"text": "She promised I would never be touched. That was the arrangement.",
+			"set_flags": { "doyle_heard_arrangement": true },
+			"choices": [
+				{ "text": "That arrangement is finished. Talk to me now or face the Inspector alone.", "next": "doyle_breaks" }
+			]
+		},
+		"doyle_breaks": {
+			"text": "I was paid to go in, make it look like the old man had a fall, and leave. She arranged everything else. I want no more part of it.",
+			"set_flags": { "doyle_confessed": true },
+			"reputation_change": 1,
+			"choices": [
+				{ "text": "You'll need to say that in front of the Inspector.", "next": "end" },
+				{ "text": "Good. I'll be in touch.", "next": "end" }
+			]
+		},
+		"doyle_violent": {
+			"text": "That's it. You're done talking.",
+			"set_flags": { "doyle_hostile": true },
+			"choices": []
+		},
+		"end": {
+			"text": "...",
+			"choices": []
+		}
+	}
+}

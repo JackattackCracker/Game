@@ -1,0 +1,199 @@
+[gd_scene load_steps=26 format=3 uid="uid://ho00000001"]
+
+[ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="1_ho001"]
+[ext_resource type="PackedScene" path="res://scenes/npcs/NPC.tscn" id="2_ho001"]
+[ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="3_ho001"]
+[ext_resource type="PackedScene" path="res://scenes/ui/Inventory.tscn" id="4_ho001"]
+[ext_resource type="PackedScene" path="res://scenes/ui/ClueBoard.tscn" id="5_ho001"]
+[ext_resource type="PackedScene" path="res://scenes/npcs/DialogueBox.tscn" id="6_ho001"]
+[ext_resource type="PackedScene" path="res://scenes/ui/ExamineUI.tscn" id="7_ho001"]
+[ext_resource type="PackedScene" path="res://scenes/ui/ObservationUI.tscn" id="8_ho001"]
+[ext_resource type="PackedScene" path="res://scenes/ui/CabUI.tscn" id="9_ho001"]
+[ext_resource type="PackedScene" path="res://scenes/world/SpawnPoint.tscn" id="10_ho001"]
+[ext_resource type="PackedScene" path="res://scenes/world/CabStop.tscn" id="11_ho001"]
+[ext_resource type="PackedScene" path="res://scenes/world/ObservationSpot.tscn" id="12_ho001"]
+[ext_resource type="PackedScene" path="res://scenes/world/EavesdropZone.tscn" id="13_ho001"]
+[ext_resource type="Script" path="res://scripts/world/InteractableItem.gd" id="14_ho001"]
+
+[sub_resource type="Environment" id="Environment_ho001"]
+background_mode = 1
+ambient_light_source = 2
+ambient_light_color = Color(0.05, 0.08, 0.04, 1)
+ambient_light_energy = 0.35
+fog_enabled = true
+fog_light_color = Color(0.1, 0.12, 0.08, 1)
+fog_light_energy = 0.7
+fog_density = 0.05
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_desk_ho"]
+size = Vector3(1.4, 0.1, 0.7)
+
+[sub_resource type="BoxMesh" id="BoxMesh_desk_ho"]
+size = Vector3(1.4, 0.1, 0.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_shelf_ho"]
+size = Vector3(0.2, 2.4, 2.0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_shelf_ho"]
+size = Vector3(0.2, 2.4, 2.0)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ledger"]
+radius = 0.12
+
+[sub_resource type="BoxMesh" id="BoxMesh_ledger"]
+size = Vector3(0.2, 0.05, 0.15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_letter_ho"]
+size = Vector3(0.22, 0.03, 0.16)
+
+[sub_resource type="BoxMesh" id="BoxMesh_letter_ho"]
+size = Vector3(0.22, 0.03, 0.16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cabinet_ho"]
+size = Vector3(0.5, 1.7, 0.65)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cabinet_ho"]
+size = Vector3(0.5, 1.7, 0.65)
+
+[node name="HarlowOffice" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ho001")
+
+[node name="GasLamp" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8, 0)
+light_color = Color(0.6, 0.9, 0.5, 1)
+light_energy = 2.0
+omni_range = 9.0
+shadow_enabled = false
+
+[node name="DeskLamp" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 1.6, -2)
+light_color = Color(1, 0.85, 0.55, 1)
+light_energy = 1.5
+omni_range = 4.0
+shadow_enabled = false
+
+[node name="Room" type="Node3D" parent="."]
+
+[node name="Floor" type="CSGBox3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+size = Vector3(10, 0.2, 8)
+use_collision = true
+
+[node name="Ceiling" type="CSGBox3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1, 0)
+size = Vector3(10, 0.2, 8)
+use_collision = true
+
+[node name="WallNorth" type="CSGBox3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -4)
+size = Vector3(10, 3.2, 0.2)
+use_collision = true
+
+[node name="WallSouth" type="CSGBox3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 4)
+size = Vector3(10, 3.2, 0.2)
+use_collision = true
+
+[node name="WallEast" type="CSGBox3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.5, 0)
+size = Vector3(0.2, 3.2, 8)
+use_collision = true
+
+[node name="WallWest" type="CSGBox3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, 0)
+size = Vector3(0.2, 3.2, 8)
+use_collision = true
+
+[node name="DeskBody" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, -2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeskBody"]
+shape = SubResource("BoxShape3D_desk_ho")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DeskBody"]
+mesh = SubResource("BoxMesh_desk_ho")
+
+[node name="Bookshelf" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9, 1.2, -1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bookshelf"]
+shape = SubResource("BoxShape3D_shelf_ho")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bookshelf"]
+mesh = SubResource("BoxMesh_shelf_ho")
+
+[node name="FilingCabinet" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.85, -3.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FilingCabinet"]
+shape = SubResource("BoxShape3D_cabinet_ho")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FilingCabinet"]
+mesh = SubResource("BoxMesh_cabinet_ho")
+
+[node name="Player" parent="." instance=ExtResource("1_ho001")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="DefaultSpawn" parent="." instance=ExtResource("10_ho001")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+spawn_id = "default"
+
+[node name="Harlow" parent="." instance=ExtResource("2_ho001")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1.5)
+npc_id = "harlow"
+npc_name = "Reginald Harlow"
+dialogue_file = "res://data/dialogue/harlow_dialogue.json"
+
+[node name="Ledger" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0.93, -2)
+script = ExtResource("14_ho001")
+item_id = "ledger"
+item_label = "Examine account ledger"
+is_pickup = true
+is_examinable = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ledger"]
+shape = SubResource("SphereShape3D_ledger")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ledger"]
+mesh = SubResource("BoxMesh_ledger")
+
+[node name="ThreateningLetter" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.92, -1.8)
+script = ExtResource("14_ho001")
+item_id = "threatening_letter"
+item_label = "Examine letter"
+is_pickup = true
+is_examinable = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ThreateningLetter"]
+shape = SubResource("BoxShape3D_letter_ho")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ThreateningLetter"]
+mesh = SubResource("BoxMesh_letter_ho")
+
+[node name="DeskObservation" parent="." instance=ExtResource("12_ho001")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -2)
+observation_file = "res://data/observations/harlow_office_obs.json"
+spot_flag = "observed_harlow_desk"
+
+[node name="OfficeEavesdrop" parent="." instance=ExtResource("13_ho001")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.0, -3)
+conversation_file = "res://data/dialogue/harlow_eavesdrop.json"
+hear_radius = 3.5
+spotted_radius = 1.5
+
+[node name="CabStop" parent="." instance=ExtResource("11_ho001")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3.5)
+destinations_file = "res://data/cab/harlow_office_destinations.json"
+cab_label = "Hail a cab"
+
+[node name="HUD" parent="." instance=ExtResource("3_ho001")]
+[node name="Inventory" parent="." instance=ExtResource("4_ho001")]
+[node name="ClueBoard" parent="." instance=ExtResource("5_ho001")]
+[node name="DialogueBox" parent="." instance=ExtResource("6_ho001")]
+[node name="ExamineUI" parent="." instance=ExtResource("7_ho001")]
+[node name="ObservationUI" parent="." instance=ExtResource("8_ho001")]
+[node name="CabUI" parent="." instance=ExtResource("9_ho001")]

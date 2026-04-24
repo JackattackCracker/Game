@@ -1,0 +1,12 @@
+{
+	"lines": [
+		{ "speaker": "Harlow", "text": "No — I told you, I cannot be seen to be involved in this.", "duration": 3.5 },
+		{ "speaker": "Harlow", "text": "A detective has been asking questions. Someone knows.", "duration": 3.5, "set_flag": "heard_harlow_nervous" },
+		{ "speaker": "Harlow", "text": "She said she would handle it. She said the same about Harrington.", "duration": 4.0 },
+		{ "speaker": "Harlow", "text": "Doyle was supposed to be the end of this. Not the beginning.", "duration": 3.5, "set_flag": "eavesdrop_named_doyle" },
+		{ "speaker": "Harlow", "text": "...", "duration": 1.5 },
+		{ "speaker": "Harlow", "text": "Get out of my office.", "duration": 2.0 }
+	],
+	"spotted_message": "Harlow has seen you. He will be guarded now.",
+	"complete_flag": "eavesdropped_harlow"
+}
